@@ -1,5 +1,4 @@
 using System;
-using ServerSuperIO.Device;
 
 namespace ServerSuperIO.Communicate.NET
 {

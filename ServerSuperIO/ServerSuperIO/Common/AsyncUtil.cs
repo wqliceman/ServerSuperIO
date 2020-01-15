@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ServerSuperIO.Common
@@ -83,7 +80,7 @@ namespace ServerSuperIO.Common
         /// <param name="state">The state.</param>
         /// <param name="taskOption">The task option.</param>
         /// <returns></returns>
-        public static Task AsyncRun( Action<object> task, object state, TaskCreationOptions taskOption)
+        public static Task AsyncRun(Action<object> task, object state, TaskCreationOptions taskOption)
         {
             return AsyncRun(task, state, taskOption, null);
         }

@@ -1,12 +1,8 @@
-﻿using System;
+﻿using ServerSuperIO.Service.Connector;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Sockets;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-using ServerSuperIO.Service;
-using ServerSuperIO.Service.Connector;
 
 namespace TestService
 {
@@ -22,11 +18,13 @@ namespace TestService
         private int _ReceiveTimeout = 1000 * 60;
         private byte[] _Buffer = null;
         private bool _IsRun = false;
+
         public Service()
         {
             _Buffer = new byte[_ReceiveBufferSize];
             _Cache = new Dictionary<string, string[]>();
         }
+
         public override string ServiceKey
         {
             get { return "TestService"; }
@@ -103,7 +101,6 @@ namespace TestService
                 }
                 catch
                 {
-
                 }
 
                 this._Thread = null;
@@ -114,7 +111,6 @@ namespace TestService
                 _Cache.Clear();
                 _Cache = null;
             }
-
         }
 
         public override void Dispose()
@@ -203,7 +199,7 @@ namespace TestService
 
         private void ConnectServer()
         {
-            _tcpClient=new TcpClient();
+            _tcpClient = new TcpClient();
             _tcpClient.Connect("127.0.0.1", 7001);
             _tcpClient.Client.SendBufferSize = _SendBufferSize;
             _tcpClient.Client.ReceiveBufferSize = _ReceiveBufferSize;
@@ -232,7 +228,7 @@ namespace TestService
                     {
                         //处理数据.....................通知设备
                         string text = System.Text.Encoding.ASCII.GetString(_Buffer, 0, read);
-                        OnServiceConnector(new FromService(this.ServiceName,this.ServiceKey),new ServiceToDevice("1",text,null,null) );
+                        OnServiceConnector(new FromService(this.ServiceName, this.ServiceKey), new ServiceToDevice("1", text, null, null));
 
                         OnReceive();
                     }
@@ -263,6 +259,5 @@ namespace TestService
                 }
             }
         }
-
     }
 }

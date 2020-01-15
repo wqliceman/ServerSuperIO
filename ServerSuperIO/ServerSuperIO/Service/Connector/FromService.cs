@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace ServerSuperIO.Service.Connector
+﻿namespace ServerSuperIO.Service.Connector
 {
-    public class FromService:IFromService
+    public class FromService : IFromService
     {
         public FromService(string serviceName, string serviceKey)
         {

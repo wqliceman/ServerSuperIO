@@ -1,9 +1,6 @@
-﻿using System;
+﻿using ServerSuperIO.Common;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ServerSuperIO.Common;
 
 namespace ServerSuperIO.Protocol.Filter
 {
@@ -22,6 +19,7 @@ namespace ServerSuperIO.Protocol.Filter
                 HeadIndex = -1;
                 EndIndex = -1;
             }
+
             public int HeadIndex { set; get; }
             public int EndIndex { set; get; }
         }
@@ -31,7 +29,7 @@ namespace ServerSuperIO.Protocol.Filter
         private byte[] EndBytes { set; get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="receiveBuffer"></param>
         /// <param name="offset"></param>

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace ServerSuperIO.Device.Connector
+﻿namespace ServerSuperIO.Device.Connector
 {
     /// <summary>
     /// 来自传递的设备

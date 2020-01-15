@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
-using ServerSuperIO.Device;
+﻿using ServerSuperIO.Device;
+using System;
 
 namespace TestDeviceDriver
 {
     [Serializable]
-    public class DeviceDyn:DeviceDynamic
+    public class DeviceDyn : DeviceDynamic
     {
         public DeviceDyn() : base()
         {
-            Dyn=new Dyn();
+            Dyn = new Dyn();
         }
 
         public override string GetAlertState()

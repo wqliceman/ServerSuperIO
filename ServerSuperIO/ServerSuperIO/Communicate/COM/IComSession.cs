@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO.Ports;
-using System.Linq;
-using System.Text;
+﻿using System.IO.Ports;
 
 namespace ServerSuperIO.Communicate.COM
 {
-    internal interface IComSession:IChannel
+    internal interface IComSession : IChannel
     {
         #region 属性
+
         /// <summary>
         /// 是否打开
         /// </summary>
@@ -22,7 +19,7 @@ namespace ServerSuperIO.Communicate.COM
         /// <summary>
         /// 波特率
         /// </summary>
-        int Baud {  get; }
+        int Baud { get; }
 
         /// <summary>
         /// 数据位
@@ -32,15 +29,17 @@ namespace ServerSuperIO.Communicate.COM
         /// <summary>
         /// 停止位
         /// </summary>
-        StopBits StopBits {get; }
+        StopBits StopBits { get; }
 
         /// <summary>
         /// 检验位
         /// </summary>
         Parity Parity { get; }
-        #endregion
+
+        #endregion 属性
 
         #region 方法
+
         /// <summary>
         /// 尝试打开串口
         /// </summary>
@@ -102,9 +101,11 @@ namespace ServerSuperIO.Communicate.COM
         /// <param name="parity"></param>
         /// <returns></returns>
         bool Settings(int baud, int databits, StopBits stopbits, Parity parity);
-        #endregion
+
+        #endregion 方法
 
         #region 事件
+
         /// <summary>
         /// 串口打开事件
         /// </summary>
@@ -119,6 +120,7 @@ namespace ServerSuperIO.Communicate.COM
         /// 串口异常
         /// </summary>
         event COMErrorHandler COMError;
-        #endregion
+
+        #endregion 事件
     }
 }

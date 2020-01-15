@@ -1,9 +1,6 @@
-﻿using System;
+﻿using ServerSuperIO.Common;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ServerSuperIO.Common;
 
 namespace ServerSuperIO.Protocol.Filter
 {
@@ -17,7 +14,7 @@ namespace ServerSuperIO.Protocol.Filter
         private byte[] HeadBytes { set; get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="receiveBuffer"></param>
         /// <param name="offset"></param>
@@ -26,7 +23,7 @@ namespace ServerSuperIO.Protocol.Filter
         /// <returns></returns>
         public IList<byte[]> Filter(byte[] receiveBuffer, int offset, int length, ref int lastByteOffset)
         {
-            List<int> heads=new List<int>();
+            List<int> heads = new List<int>();
             int maxIndex = offset + length - HeadBytes.Length;
             int loopIndex = offset;
             while (loopIndex <= maxIndex)
@@ -42,12 +39,12 @@ namespace ServerSuperIO.Protocol.Filter
                 }
             }
 
-            List<byte[]> listBytes=new List<byte[]>();
-            for(int i=0;i<heads.Count-1;i++)
+            List<byte[]> listBytes = new List<byte[]>();
+            for (int i = 0; i < heads.Count - 1; i++)
             {
                 int count = heads[i + 1] - heads[i];
-                byte[] data=new byte[count];
-                Buffer.BlockCopy(receiveBuffer,heads[i],data,0,data.Length);
+                byte[] data = new byte[count];
+                Buffer.BlockCopy(receiveBuffer, heads[i], data, 0, data.Length);
                 listBytes.Add(data);
                 lastByteOffset = heads[i] + count - 1;
             }

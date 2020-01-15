@@ -5,6 +5,7 @@ namespace ServerSuperIO.Common
     public class EnumDescriptionAttribute : Attribute
     {
         private string _Description;
+
         public EnumDescriptionAttribute(string description)
         {
             _Description = description;

@@ -1,28 +1,27 @@
-﻿using System;
-using System.CodeDom;
+﻿using ServerSuperIO.Base;
+using ServerSuperIO.Log;
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using ServerSuperIO.Base;
-using ServerSuperIO.Log;
 
 namespace ServerSuperIO.Service
 {
-    public class ServiceManager:IServiceManager<string ,IService>
+    public class ServiceManager : IServiceManager<string, IService>
     {
         private Manager<string, IService> _manager;
-        public ServiceManager(ILog log=null)
+
+        public ServiceManager(ILog log = null)
         {
             Logger = log;
-            _manager=new Manager<string, IService>();
+            _manager = new Manager<string, IService>();
         }
 
         public IService this[int index]
         {
-            get {
+            get
+            {
                 if (index >= 0 && index <= _manager.Count - 1)
                 {
                     return _manager.Values.ToArray()[index];
@@ -102,9 +101,9 @@ namespace ServerSuperIO.Service
             return _manager.ContainsKey(serviceKey);
         }
 
-        public void BatchUpdateDevice(string deviceID,object obj)
+        public void BatchUpdateDevice(string deviceID, object obj)
         {
-            foreach (KeyValuePair<string ,IService> kv in _manager)
+            foreach (KeyValuePair<string, IService> kv in _manager)
             {
                 if (!kv.Value.IsDisposed)
                 {
@@ -176,11 +175,13 @@ namespace ServerSuperIO.Service
             _manager.Clear();
         }
 
-        public int Count {
+        public int Count
+        {
             get { return this._manager.Count; }
         }
 
         public ILog Logger { get; private set; }
+
         public IEnumerator GetEnumerator()
         {
             return this._manager.GetEnumerator();

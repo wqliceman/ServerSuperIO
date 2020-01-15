@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading;
-using ServerSuperIO.Device;
+﻿using ServerSuperIO.Device;
 using ServerSuperIO.Server;
+using System;
+using System.Net.Sockets;
+using System.Threading;
 
 namespace ServerSuperIO.Communicate.NET
 {
@@ -314,7 +310,6 @@ namespace ServerSuperIO.Communicate.NET
             {
                 if (disposing)
                 {
-
                 }
 
                 lock (_SyncLock)
@@ -331,7 +326,6 @@ namespace ServerSuperIO.Communicate.NET
                             }
                             catch
                             {
-
                             }
                         }
                     }

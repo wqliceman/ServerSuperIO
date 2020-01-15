@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ServerSuperIO.Base;
+﻿using ServerSuperIO.Base;
 using ServerSuperIO.Service.Connector;
 
 namespace ServerSuperIO.Service
@@ -10,7 +6,7 @@ namespace ServerSuperIO.Service
     /// <summary>
     ///     这个接口的UpdateDevice与设备的DeviceObjectChangedHandler事件和OnDeviceObjectChangedHandler函数关联
     /// </summary>
-    public interface IService : IServiceConnector,IPlugin
+    public interface IService : IServiceConnector, IPlugin
     {
         /// <summary>
         ///     服务Key,要求唯一
@@ -20,8 +16,7 @@ namespace ServerSuperIO.Service
         /// <summary>
         ///     服务名称
         /// </summary>
-        string ServiceName { get;}
-
+        string ServiceName { get; }
 
         /// <summary>
         /// 是否自动起动

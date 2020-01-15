@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Xml.Serialization;
-using ServerSuperIO.Communicate;
-using ServerSuperIO.Communicate.COM;
+﻿using ServerSuperIO.Communicate;
 using ServerSuperIO.Communicate.NET;
+using System;
+using System.ComponentModel;
+using System.Xml.Serialization;
 
 namespace ServerSuperIO.Config
 {
@@ -15,7 +11,6 @@ namespace ServerSuperIO.Config
     {
         public ServerConfig() : this("Server-" + DateTime.Now.ToString("yyyyMMddHHmmss"))
         {
-
         }
 
         public ServerConfig(string serverName)
@@ -53,6 +48,7 @@ namespace ServerSuperIO.Config
         }
 
         #region 全局
+
         [Category("1.全局"),
          DisplayName("ServerSession"),
          Description("标识服务的唯ID，一般为Guid"),
@@ -89,9 +85,11 @@ namespace ServerSuperIO.Config
         Description("标识是否检测数据长度，如果开启，那么会调用协议驱动的GetPackageLength接口，直到接收返回的数据长度的数据")]
         [XmlElement(ElementName = "StartCheckPackageLength")]
         public bool StartCheckPackageLength { get; set; }
-        #endregion
+
+        #endregion 全局
 
         #region 串口
+
         [Category("2.串口"),
          DisplayName("ComReadBufferSize"),
          Description("设置一次接收数据的字节数组最大值")]
@@ -121,9 +119,11 @@ namespace ServerSuperIO.Config
         Description("轮询模式下，发送和接收数据中间的等待时间，串口通讯不支持其他控制模式")]
         [XmlElement(ElementName = "ComLoopInterval")]
         public int ComLoopInterval { get; set; }
-        #endregion
+
+        #endregion 串口
 
         #region 网络
+
         [Category("3.网络"),
          DisplayName("NetReceiveBufferSize"),
          Description("设置一次接收数据的字节数组最大值")]
@@ -190,7 +190,6 @@ namespace ServerSuperIO.Config
         [XmlElement(ElementName = "SocketMode")]
         public SocketMode SocketMode { get; set; }
 
-
         [Category("3.网络"),
         DisplayName("ClearSocketSession"),
         Description("标识是否清理连接，如果一个连接在一定时间范围内没有接收到数据，将主动断开连接")]
@@ -215,6 +214,6 @@ namespace ServerSuperIO.Config
         [XmlElement(ElementName = "ParallelInterval")]
         public int ParallelInterval { get; set; }
 
-        #endregion
+        #endregion 网络
     }
 }

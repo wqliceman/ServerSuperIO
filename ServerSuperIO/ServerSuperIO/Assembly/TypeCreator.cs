@@ -20,7 +20,7 @@ namespace ServerSuperIO.Common.Assembly
 
         public T BuildUp<T>(object[] args)
         {
-            object result = Activator.CreateInstance(typeof(T),args);
+            object result = Activator.CreateInstance(typeof(T), args);
             return (T)result;
         }
 
@@ -37,7 +37,7 @@ namespace ServerSuperIO.Common.Assembly
             {
                 throw new FileNotFoundException(assemblyname + " ²»´æÔÚ");
             }
-            System.Reflection.Assembly assmble = System.Reflection.Assembly.LoadFrom (assemblyname);
+            System.Reflection.Assembly assmble = System.Reflection.Assembly.LoadFrom(assemblyname);
             object tmpobj = assmble.CreateInstance(instancename);
             return (T)tmpobj;
         }

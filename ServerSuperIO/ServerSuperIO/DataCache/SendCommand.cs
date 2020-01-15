@@ -1,9 +1,8 @@
 using System;
-using ServerSuperIO.DataCache;
 
 namespace ServerSuperIO.DataCache
 {
-    public class SendCommand : ServerSuperIO.DataCache.ISendCommand 
+    public class SendCommand : ServerSuperIO.DataCache.ISendCommand
     {
         private byte[] _Bytes = new byte[] { };
 
@@ -16,6 +15,7 @@ namespace ServerSuperIO.DataCache
         }
 
         private string _Key = String.Empty;
+
         /// <summary>
         /// 命令名称
         /// </summary>
@@ -25,6 +25,7 @@ namespace ServerSuperIO.DataCache
         }
 
         private Priority _Priority = Priority.Normal;
+
         /// <summary>
         /// 发送优先级，暂时不用
         /// </summary>
@@ -50,7 +51,7 @@ namespace ServerSuperIO.DataCache
         /// </summary>
         /// <param name="cmdkeys">命令名称</param>
         /// <param name="cmdbytes">命令字节数组</param>
-        public SendCommand(string cmdkey, byte[] cmdbytes,Priority priority)
+        public SendCommand(string cmdkey, byte[] cmdbytes, Priority priority)
         {
             this._Key = cmdkey;
             this._Bytes = cmdbytes;

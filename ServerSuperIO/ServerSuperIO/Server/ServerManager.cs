@@ -1,22 +1,20 @@
-﻿using System;
+﻿using ServerSuperIO.Config;
+using ServerSuperIO.Device;
+using ServerSuperIO.Log;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
-using ServerSuperIO.Config;
-using ServerSuperIO.Device;
-using ServerSuperIO.Log;
 
 namespace ServerSuperIO.Server
 {
     public class ServerManager : IServerManager
     {
         private IList<IServer> _Servers;
+
         public ServerManager()
         {
-            _Servers=new List<IServer>();
+            _Servers = new List<IServer>();
         }
 
         public IServer this[int index]
@@ -38,7 +36,7 @@ namespace ServerSuperIO.Server
         {
             try
             {
-                return new Server(config,deviceContainer,logContainer);
+                return new Server(config, deviceContainer, logContainer);
             }
             catch
             {
@@ -82,7 +80,7 @@ namespace ServerSuperIO.Server
 
         public void RemoveServer(string serverName)
         {
-            IServer server=_Servers.FirstOrDefault(s => s.ServerName == serverName);
+            IServer server = _Servers.FirstOrDefault(s => s.ServerName == serverName);
             if (server != null)
             {
                 try

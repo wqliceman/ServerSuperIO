@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using ServerSuperIO.Device;
+using ServerSuperIO.Server;
+using System;
 using System.Net;
 using System.Net.Sockets;
-using System.Text;
 using System.Threading;
-using ServerSuperIO.Common;
-using ServerSuperIO.Device;
-using ServerSuperIO.Server;
 
 namespace ServerSuperIO.Communicate.NET
 {
@@ -76,14 +72,13 @@ namespace ServerSuperIO.Communicate.NET
                     for (int i = 0; i < devList.Length; i++)
                     {
                         IRunDevice dev = devList[i];
-                        IChannel channel = this.Server.ChannelManager.GetChannel(dev.DeviceParameter.NET.RemoteIP,CommunicateType.NET);
+                        IChannel channel = this.Server.ChannelManager.GetChannel(dev.DeviceParameter.NET.RemoteIP, CommunicateType.NET);
                         if (channel == null)
                         {
                             StartConnect(dev.DeviceParameter.NET.RemoteIP, dev.DeviceParameter.NET.RemotePort);
                         }
                     }
                     #endregion
-
                 }
                 System.Threading.Thread.Sleep(1000);
             }
@@ -141,7 +136,6 @@ namespace ServerSuperIO.Communicate.NET
             {
                 if (disposing)
                 {
-
                 }
 
                 if (this._Thread != null && this._Thread.IsAlive)
@@ -156,7 +150,6 @@ namespace ServerSuperIO.Communicate.NET
                         }
                         catch
                         {
-
                         }
                     }
                 }

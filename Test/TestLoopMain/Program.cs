@@ -1,24 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ServerSuperIO.Communicate;
+﻿using ServerSuperIO.Communicate;
 using ServerSuperIO.Communicate.NET;
 using ServerSuperIO.Config;
-using ServerSuperIO.Device;
 using ServerSuperIO.Server;
-using ServerSuperIO.Service;
-using ServerSuperIO.Show;
+using System;
 using TestDeviceDriver;
-using TestService;
-using TestShowForm;
 
 namespace TestLoopMain
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             DeviceDriver dev1 = new DeviceDriver();
             dev1.DeviceParameter.DeviceName = "串口设备1";
@@ -79,23 +70,22 @@ namespace TestLoopMain
 
             server.AddDeviceCompleted += server_AddDeviceCompleted;
             server.DeleteDeviceCompleted += server_DeleteDeviceCompleted;
-            server.SocketConnected+=server_SocketConnected;
-            server.SocketClosed+=server_SocketClosed;
+            server.SocketConnected += server_SocketConnected;
+            server.SocketClosed += server_SocketClosed;
             server.Start();
 
             server.AddDevice(dev1);
             //server.AddDevice(dev2);
             //server.AddDevice(dev3);
-           // server.AddDevice(dev4);
-            //server.RemoveDevice(3);//删除设备 
+            // server.AddDevice(dev4);
+            //server.RemoveDevice(3);//删除设备
 
-            TestService.Service service =new TestService.Service();
+            TestService.Service service = new TestService.Service();
             server.AddService(service);
 
-
-            while ("exit"==Console.ReadLine())
+            while ("exit" == Console.ReadLine())
             {
-                 server.Stop();
+                server.Stop();
             }
         }
 
@@ -106,17 +96,17 @@ namespace TestLoopMain
 
         private static void server_SocketConnected(string ip, int port)
         {
-            Console.WriteLine(String.Format("连接：{0}-{1} 成功",ip, port));
+            Console.WriteLine(String.Format("连接：{0}-{1} 成功", ip, port));
         }
 
         private static void s_AppServiceLog(string log)
         {
-           Console.WriteLine(log);
+            Console.WriteLine(log);
         }
 
         private static void server_AddDeviceCompleted(string devid, string devName, bool isSuccess)
         {
-            Console.WriteLine(devName+",增加:"+isSuccess.ToString());
+            Console.WriteLine(devName + ",增加:" + isSuccess.ToString());
         }
 
         private static void server_DeleteDeviceCompleted(string devid, string devName, bool isSuccess)

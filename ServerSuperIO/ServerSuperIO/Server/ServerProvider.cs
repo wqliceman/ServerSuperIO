@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace ServerSuperIO.Server
+﻿namespace ServerSuperIO.Server
 {
-    public abstract class ServerProvider:IServerProvider
+    public abstract class ServerProvider : IServerProvider
     {
         protected ServerProvider()
         {

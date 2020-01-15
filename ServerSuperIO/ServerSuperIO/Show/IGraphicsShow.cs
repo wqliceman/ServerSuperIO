@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using ServerSuperIO.Base;
 using System.Windows.Forms;
-using ServerSuperIO.Base;
 
 namespace ServerSuperIO.Show
 {
@@ -12,8 +8,8 @@ namespace ServerSuperIO.Show
         /// <summary>
         ///     服务Key,要求唯一
         /// </summary>
-        string ShowKey { get;}
-        
+        string ShowKey { get; }
+
         /// <summary>
         ///     服务名称
         /// </summary>
@@ -26,9 +22,10 @@ namespace ServerSuperIO.Show
         void ShowGraphics(IWin32Window windows);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         void CloseGraphics();
+
         /// <summary>
         ///     更新设备
         /// </summary>

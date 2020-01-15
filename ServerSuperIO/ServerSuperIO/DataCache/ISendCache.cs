@@ -1,5 +1,4 @@
-﻿using System;
-namespace ServerSuperIO.DataCache
+﻿namespace ServerSuperIO.DataCache
 {
     public interface ISendCache
     {
@@ -30,7 +29,7 @@ namespace ServerSuperIO.DataCache
         void Clear();
 
         /// <summary>
-        /// 命令总数 
+        /// 命令总数
         /// </summary>
         int Count { get; }
 

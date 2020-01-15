@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ServerSuperIO.Communicate;
+﻿using ServerSuperIO.Communicate;
 using ServerSuperIO.Communicate.NET;
 
 namespace ServerSuperIO.Config
@@ -80,7 +76,7 @@ namespace ServerSuperIO.Config
         int MaxConnects { get; set; }
 
         /// <summary>
-        /// 设置网络心跳检测 
+        /// 设置网络心跳检测
         /// </summary>
         uint KeepAlive { get; set; }
 

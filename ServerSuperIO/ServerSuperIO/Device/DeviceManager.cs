@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ServerSuperIO.Base;
+﻿using ServerSuperIO.Base;
 using ServerSuperIO.Communicate;
 using ServerSuperIO.Communicate.NET;
 using ServerSuperIO.Log;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ServerSuperIO.Device
 {
@@ -19,7 +18,7 @@ namespace ServerSuperIO.Device
         /// <summary>
         /// 构造函数
         /// </summary>
-        public DeviceManager(ILog log=null)
+        public DeviceManager(ILog log = null)
         {
             Logger = log;
             _Devices = new Manager<string, IRunDevice>();
@@ -204,10 +203,10 @@ namespace ServerSuperIO.Device
             List<IRunDevice> list = new List<IRunDevice>();
             foreach (KeyValuePair<string, IRunDevice> kv in _Devices)
             {
-                if ((kv.Value.CommunicateType == ioType && String.CompareOrdinal(kv.Value.DeviceParameter.NET.RemoteIP, iopara1)==0) 
+                if ((kv.Value.CommunicateType == ioType && String.CompareOrdinal(kv.Value.DeviceParameter.NET.RemoteIP, iopara1) == 0)
                     || (kv.Value.CommunicateType == ioType && String.CompareOrdinal(kv.Value.DeviceParameter.COM.Port.ToString(), iopara1) == 0))
                 {
-                   list.Add(kv.Value);
+                    list.Add(kv.Value);
                 }
             }
             return list.ToArray();
@@ -277,7 +276,7 @@ namespace ServerSuperIO.Device
         }
 
         /// <summary>
-        /// 获得设备列表 
+        /// 获得设备列表
         /// </summary>
         /// <param name="devType"></param>
         /// <returns></returns>
@@ -357,7 +356,7 @@ namespace ServerSuperIO.Device
 
         public IEnumerator GetEnumerator()
         {
-           return this._Devices.GetEnumerator();
+            return this._Devices.GetEnumerator();
         }
     }
 }

@@ -1,28 +1,22 @@
-﻿using System;
+﻿using ServerSuperIO.Protocol.Filter;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using ServerSuperIO.Common;
-using ServerSuperIO.Protocol;
-using ServerSuperIO.Protocol.Filter;
-using ServerSuperIO.Server;
 
 namespace ServerSuperIO.Communicate.NET
 {
     public class UdpSocketSession : SocketSession
     {
-        public UdpSocketSession(Socket socket, IPEndPoint remoteEndPoint, ISocketAsyncEventArgsProxy proxy):base(socket,remoteEndPoint,proxy)
+        public UdpSocketSession(Socket socket, IPEndPoint remoteEndPoint, ISocketAsyncEventArgsProxy proxy) : base(socket, remoteEndPoint, proxy)
         {
-            
         }
 
         public override void TryReceive()
         {
-           return;
+            return;
         }
 
         protected override void SendAsync(byte[] data)
@@ -33,7 +27,7 @@ namespace ServerSuperIO.Communicate.NET
             e.RemoteEndPoint = RemoteEndPoint;
             e.UserToken = data;
 
-            e.SetBuffer(data,0, data.Length);
+            e.SetBuffer(data, 0, data.Length);
 
             if (Client != null)
             {
@@ -101,13 +95,14 @@ namespace ServerSuperIO.Communicate.NET
                 case SocketAsyncOperation.SendTo:
                     ProcessSend(e);
                     break;
+
                 default:
                     this.Server.Logger.Info(false, "不支持接收和发送的操作");
                     break;
             }
         }
 
-        void CleanAsyncEventArgs(SocketAsyncEventArgs e)
+        private void CleanAsyncEventArgs(SocketAsyncEventArgs e)
         {
             e.UserToken = null;
             e.Completed -= new EventHandler<SocketAsyncEventArgs>(SocketEventArgs_Completed);
@@ -116,7 +111,7 @@ namespace ServerSuperIO.Communicate.NET
 
         protected override Task<byte[]> ReadAsync(int dataLength, CancellationTokenSource cts)
         {
-            return new Task<byte[]>(() => new byte[]{});
+            return new Task<byte[]>(() => new byte[] { });
         }
 
         public override IList<byte[]> Read(IReceiveFilter receiveFilter)
@@ -126,7 +121,7 @@ namespace ServerSuperIO.Communicate.NET
 
         public override int Write(byte[] data)
         {
-            return this.Client.SendDataTo(data, 0,data.Length, this.RemoteEndPoint);
+            return this.Client.SendDataTo(data, 0, data.Length, this.RemoteEndPoint);
         }
     }
 }

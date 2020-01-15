@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
 
 namespace ServerSuperIO.Common
 {
@@ -28,7 +24,7 @@ namespace ServerSuperIO.Common
         public static byte[] HexToByte(string hexString)
         {
             string[] hexSplit = hexString.Split(' ');
-            return Array.ConvertAll<string, byte>(hexSplit, (s) => byte.Parse(s,NumberStyles.HexNumber));
+            return Array.ConvertAll<string, byte>(hexSplit, (s) => byte.Parse(s, NumberStyles.HexNumber));
         }
 
         /// <summary>

@@ -11,7 +11,7 @@ namespace ServerSuperIO.Communicate.COM
             Baud = 9600;
         }
 
-        public COMParameter(int port ,int baud)
+        public COMParameter(int port, int baud)
         {
             Port = port;
             Baud = baud;

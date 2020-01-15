@@ -1,22 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ServerSuperIO.Common;
-using ServerSuperIO.Communicate;
+﻿using ServerSuperIO.Communicate;
 using ServerSuperIO.Persistence;
+using System;
 
 namespace ServerSuperIO.Device
 {
     [Serializable]
-    public abstract class DeviceDynamic:XmlPersistence,IDeviceDynamic
+    public abstract class DeviceDynamic : XmlPersistence, IDeviceDynamic
     {
         protected DeviceDynamic()
         {
             DeviceID = String.Empty;
             Remark = String.Empty;
-            RunState=RunState.None;
-            CommunicateState=CommunicateState.None;
+            RunState = RunState.None;
+            CommunicateState = CommunicateState.None;
         }
 
         /// <summary>

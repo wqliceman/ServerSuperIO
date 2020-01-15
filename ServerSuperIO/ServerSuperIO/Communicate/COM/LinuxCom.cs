@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace ServerSuperIO.Communicate.COM
+﻿namespace ServerSuperIO.Communicate.COM
 {
     /// <summary>
     /// 标识linux下串口类型
@@ -14,6 +9,7 @@ namespace ServerSuperIO.Communicate.COM
         /// 标识串口为USB类型
         /// </summary>
         Usb,
+
         /// <summary>
         /// 标识串口为System系统类型
         /// </summary>

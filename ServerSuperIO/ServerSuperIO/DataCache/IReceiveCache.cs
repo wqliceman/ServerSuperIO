@@ -1,11 +1,5 @@
-﻿using System;
+﻿using ServerSuperIO.Protocol.Filter;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
-using ServerSuperIO.Protocol;
-using ServerSuperIO.Protocol.Filter;
 
 namespace ServerSuperIO.DataCache
 {
@@ -53,7 +47,7 @@ namespace ServerSuperIO.DataCache
         /// <summary>
         /// 有效数据长度
         /// </summary>
-        int DataLength { set;get; }
+        int DataLength { set; get; }
 
         /// <summary>
         /// 在不调整的情况下，能容纳多少数

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace ServerSuperIO.Communicate.COM
+﻿namespace ServerSuperIO.Communicate.COM
 {
     /// <summary>
     /// 打开串口事件
@@ -31,5 +26,4 @@ namespace ServerSuperIO.Communicate.COM
     /// <param name="baud"></param>
     /// <param name="error"></param>
     internal delegate void COMErrorHandler(IComSession com, int port, int baud, string error);
-
 }

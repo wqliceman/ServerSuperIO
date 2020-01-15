@@ -1,16 +1,10 @@
-﻿using System;
+﻿using ServerSuperIO.DataCache;
+using ServerSuperIO.Protocol.Filter;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data.SqlTypes;
 using System.IO.Ports;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using ServerSuperIO.DataCache;
-using ServerSuperIO.Protocol;
-using ServerSuperIO.Protocol.Filter;
-using ServerSuperIO.Server;
 
 namespace ServerSuperIO.Communicate.COM
 {
@@ -18,8 +12,10 @@ namespace ServerSuperIO.Communicate.COM
     {
         private SerialPort _sp = null;
         private bool _IsDisposed = false;
+
         //private byte[] _ReadBuffer = null;
         private IReceiveCache _ReceiveCache = null;
+
         /// <summary>
         /// 构造函数
         /// </summary>
@@ -241,12 +237,12 @@ namespace ServerSuperIO.Communicate.COM
             {
                 throw new ArgumentNullException("数据源为空");
             }
-           
+
             if (offset > data.Length)
             {
                 throw new ArgumentException("偏移量超出数组大小");
             }
-          
+
             this._sp.Write(data, offset, length);
 
             return length;
@@ -306,7 +302,6 @@ namespace ServerSuperIO.Communicate.COM
         /// </summary>
         public event COMErrorHandler COMError;
 
-
         /// <summary>
         /// 串口号为关键字
         /// </summary>
@@ -340,7 +335,7 @@ namespace ServerSuperIO.Communicate.COM
             {
                 int readLength = dataLength;
                 List<byte> readBytes = new List<byte>(dataLength);
-                while (readLength>0)
+                while (readLength > 0)
                 {
                     if (cts.IsCancellationRequested)
                     {
@@ -422,7 +417,7 @@ namespace ServerSuperIO.Communicate.COM
                     int sendLength = remainLength >= sendBufferSize
                         ? sendBufferSize
                         : remainLength;
-                  
+
                     successNum += InternalWrite(data, num, sendLength);
 
                     num += sendLength;

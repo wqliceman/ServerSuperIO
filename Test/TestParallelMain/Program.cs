@@ -1,24 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ServerSuperIO.Communicate;
+﻿using ServerSuperIO.Communicate;
 using ServerSuperIO.Communicate.NET;
 using ServerSuperIO.Config;
-using ServerSuperIO.Device;
 using ServerSuperIO.Server;
-using ServerSuperIO.Service;
-using ServerSuperIO.Show;
+using System;
 using TestDeviceDriver;
-using TestService;
-using TestShowForm;
 
 namespace TestParallelMain
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             IServer server = new ServerManager().CreateServer(new ServerConfig()
             {
@@ -42,7 +33,7 @@ namespace TestParallelMain
 
             string devCode = "0";
             DeviceDriver dev1 = new DeviceDriver();
-            dev1.DeviceParameter.DeviceName = "设备驱动"+ devCode.ToString();
+            dev1.DeviceParameter.DeviceName = "设备驱动" + devCode.ToString();
             dev1.DeviceParameter.DeviceAddr = int.Parse(devCode);
             dev1.DeviceParameter.DeviceCode = devCode.ToString();
             dev1.DeviceParameter.DeviceID = devCode.ToString();

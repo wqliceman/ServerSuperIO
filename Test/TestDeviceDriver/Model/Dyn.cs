@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TestDeviceDriver
 {
@@ -18,6 +14,7 @@ namespace TestDeviceDriver
         }
 
         private byte[] _ProHead = new byte[] { };
+
         /// <summary>
         /// 协议头
         /// </summary>
@@ -28,6 +25,7 @@ namespace TestDeviceDriver
         }
 
         private int _DeviceAddr = -1;
+
         /// <summary>
         /// 解析的地址
         /// </summary>
@@ -38,6 +36,7 @@ namespace TestDeviceDriver
         }
 
         private byte[] _Command = new byte[] { };
+
         /// <summary>
         /// 协议命令
         /// </summary>
@@ -48,6 +47,7 @@ namespace TestDeviceDriver
         }
 
         private byte[] _ProEnd = new byte[] { };
+
         /// <summary>
         /// 协议结束
         /// </summary>
@@ -58,6 +58,7 @@ namespace TestDeviceDriver
         }
 
         private object _State = null;
+
         /// <summary>
         /// 状态
         /// </summary>
@@ -68,6 +69,7 @@ namespace TestDeviceDriver
         }
 
         private float _Flow = 0.0f;
+
         /// <summary>
         /// 流量
         /// </summary>
@@ -76,7 +78,9 @@ namespace TestDeviceDriver
             get { return _Flow; }
             set { _Flow = value; }
         }
+
         private float _Signal = 0.0f;
+
         /// <summary>
         /// 信号
         /// </summary>

@@ -1,18 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
-using System.Text;
-using ServerSuperIO.Common;
-using ServerSuperIO.Protocol;
-using ServerSuperIO.Server;
 
 namespace ServerSuperIO.Communicate.NET
 {
-    public abstract class SocketSession : BaseChannel,ISocketSession
+    public abstract class SocketSession : BaseChannel, ISocketSession
     {
         private bool _IsDisposed = false;
+
         protected SocketSession(Socket socket, IPEndPoint remoteEndPoint, ISocketAsyncEventArgsProxy proxy)
         {
             SessionID = Guid.NewGuid().ToString();
@@ -27,7 +22,7 @@ namespace ServerSuperIO.Communicate.NET
             Client = socket;
             SocketAsyncProxy = proxy;
 
-            StartTime=DateTime.Now;
+            StartTime = DateTime.Now;
             LastActiveTime = StartTime;
         }
 
@@ -62,7 +57,7 @@ namespace ServerSuperIO.Communicate.NET
         public IPEndPoint RemoteEndPoint { get; private set; }
 
         /// <summary>
-        /// 开始时间 
+        /// 开始时间
         /// </summary>
         public DateTime StartTime { get; private set; }
 
@@ -115,11 +110,13 @@ namespace ServerSuperIO.Communicate.NET
         /// </summary>
         /// <param name="data"></param>
         protected abstract void SendAsync(byte[] data);
+
         /// <summary>
         /// 同步发送
         /// </summary>
         /// <param name="data"></param>
         protected abstract void SendSync(byte[] data);
+
         /// <summary>
         /// 初始化
         /// </summary>
@@ -136,7 +133,6 @@ namespace ServerSuperIO.Communicate.NET
         //{
         //    get { return _SyncLock; }
         //}
-
 
         /// <summary>
         /// 关键字

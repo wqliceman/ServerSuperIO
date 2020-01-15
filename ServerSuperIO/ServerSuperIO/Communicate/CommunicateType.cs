@@ -6,6 +6,7 @@ namespace ServerSuperIO.Communicate
     {
         [EnumDescription("网络")]
         NET,
+
         [EnumDescription("串口")]
         COM,
     }

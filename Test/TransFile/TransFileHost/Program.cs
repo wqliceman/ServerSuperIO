@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ServerSuperIO.Communicate;
+﻿using ServerSuperIO.Communicate;
 using ServerSuperIO.Communicate.NET;
 using ServerSuperIO.Config;
 using ServerSuperIO.Server;
+using System;
 using TransFileDriver;
 
 namespace TransFileHost
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            
             ReceiveFileDriver dev = new ReceiveFileDriver();
             dev.DeviceParameter.DeviceName = "设备4";
             dev.DeviceParameter.DeviceAddr = 0;

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ServerSuperIO.Common;
+﻿using ServerSuperIO.Common;
 
 namespace ServerSuperIO.Communicate.NET
 { /// <summary>
@@ -12,6 +8,7 @@ namespace ServerSuperIO.Communicate.NET
     {
         [EnumDescription("设备IP分发数据")]
         DeviceIP,
+
         [EnumDescription("设备编码分发数据")]
         DeviceCode
     }

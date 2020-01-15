@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+﻿using System.Net;
 using System.Net.Sockets;
-using System.Text;
 
 namespace ServerSuperIO.Communicate.NET
 {
@@ -76,14 +72,14 @@ namespace ServerSuperIO.Communicate.NET
         /// <param name="offset">The offset.</param>
         /// <param name="length">The length.</param>
         /// <param name="endPoint"></param>
-        public static int SendDataTo(this Socket client, byte[] data, int offset, int length,EndPoint endPoint)
+        public static int SendDataTo(this Socket client, byte[] data, int offset, int length, EndPoint endPoint)
         {
             int sent = 0;
             int thisSent = 0;
 
             while ((length - sent) > 0)
             {
-                thisSent = client.SendTo(data, offset + sent, length - sent, SocketFlags.None,endPoint);
+                thisSent = client.SendTo(data, offset + sent, length - sent, SocketFlags.None, endPoint);
                 sent += thisSent;
             }
             return thisSent;

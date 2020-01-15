@@ -1,22 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ServerSuperIO.Common;
+﻿using ServerSuperIO.Common;
 using ServerSuperIO.Communicate;
 using ServerSuperIO.Device;
+using System;
 
 namespace TransFileDriver
 {
-    public class Protocol: ProtocolDriver
+    public class Protocol : ProtocolDriver
     {
-        public static byte[] Head {
+        public static byte[] Head
+        {
             get
             {
-                return new byte[] {0x35,0x35};
+                return new byte[] { 0x35, 0x35 };
             }
         }
+
         public static byte[] End
         {
             get
@@ -46,21 +44,21 @@ namespace TransFileDriver
 
         public override string GetCode(byte[] data)
         {
-            int codeIndex = data.Mark(0,data.Length,Head);
-            
+            int codeIndex = data.Mark(0, data.Length, Head);
+
             if (codeIndex == -1)
             {
                 return String.Empty;
             }
             else
             {
-                byte[] codebytes=new byte[4];
-                Buffer.BlockCopy(data,codeIndex+2, codebytes,0,codebytes.Length);
+                byte[] codebytes = new byte[4];
+                Buffer.BlockCopy(data, codeIndex + 2, codebytes, 0, codebytes.Length);
                 return System.Text.Encoding.ASCII.GetString(codebytes);
             }
         }
 
-        public override int GetPackageLength(byte[] data, IChannel channel, ref int readTimeout )
+        public override int GetPackageLength(byte[] data, IChannel channel, ref int readTimeout)
         {
             throw new NotImplementedException();
         }

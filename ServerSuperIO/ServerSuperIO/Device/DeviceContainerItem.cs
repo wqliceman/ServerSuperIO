@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ServerSuperIO.Communicate;
+﻿using ServerSuperIO.Communicate;
 
 namespace ServerSuperIO.Device
 {
-    public class DeviceContainerItem:IDeviceContainerItem
+    public class DeviceContainerItem : IDeviceContainerItem
     {
         public DeviceContainerItem()
         { }
+
         public string DeviceID { get; set; }
         public string DeviceCode { get; set; }
         public int DeviceAddr { get; set; }

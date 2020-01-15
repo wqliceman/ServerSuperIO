@@ -6,6 +6,7 @@ namespace ServerSuperIO.Device
     {
         [EnumDescription("фум╗")]
         Normal = 0x00,
+
         [EnumDescription("сеох")]
         Priority = 0x01
     }

@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using ServerSuperIO.Device;
+using System;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using ServerSuperIO.Device;
 
 namespace TransFileDriver
 {
@@ -14,6 +9,7 @@ namespace TransFileDriver
         public Command()
         {
         }
+
         public override string Name
         {
             get { return "writefile"; }
@@ -24,20 +20,20 @@ namespace TransFileDriver
             throw new NotImplementedException();
         }
 
-        public override dynamic Analysis<T1,T2>(byte[] data, T1 t1,T2 t2)
+        public override dynamic Analysis<T1, T2>(byte[] data, T1 t1, T2 t2)
         {
             try
             {
-               //count += data.Length - 24;
-               //Console.WriteLine(count.ToString()+","+data[0].ToString() + "," + data[data.Length - 1].ToString());
-                
+                //count += data.Length - 24;
+                //Console.WriteLine(count.ToString()+","+data[0].ToString() + "," + data[data.Length - 1].ToString());
+
                 string path = Path.Combine(Environment.CurrentDirectory, "rev");
                 if (!System.IO.Directory.Exists(path))
                 {
                     System.IO.Directory.CreateDirectory(path);
                 }
                 string fileName = System.Text.Encoding.ASCII.GetString(data, 6, 16);
-                path=Path.Combine(path, fileName);
+                path = Path.Combine(path, fileName);
                 using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Write, FileShare.Write))
                 {
                     fs.Seek(fs.Length, SeekOrigin.Current);
@@ -46,7 +42,6 @@ namespace TransFileDriver
                     fs.Write(content, 0, content.Length);
                     fs.Flush();
                 }
-
             }
             catch
             {
@@ -55,7 +50,7 @@ namespace TransFileDriver
             return 0;
         }
 
-        public override byte[] Package<T1,T2>(string code, T1 t1,T2 t2)
+        public override byte[] Package<T1, T2>(string code, T1 t1, T2 t2)
         {
             throw new NotImplementedException();
         }

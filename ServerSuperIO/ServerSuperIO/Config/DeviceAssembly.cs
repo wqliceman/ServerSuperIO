@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using ServerSuperIO.Device;
+using System;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using System.Xml.Serialization;
-using ServerSuperIO.Device;
 
 namespace ServerSuperIO.Config
 {

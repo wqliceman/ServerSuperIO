@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace ServerSuperIO.Persistence
+﻿namespace ServerSuperIO.Persistence
 {
-    public interface IXmlPersistence:IPersistence
+    public interface IXmlPersistence : IPersistence
     {
         /// <summary>
         /// 保存的路径

@@ -1,29 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Sockets;
-using System.Text;
 
 namespace ServerSuperIO.Communicate.NET
 {
     public class BufferManager
     {
-        // This class creates a single large buffer which can be divided up 
-        // and assigned to SocketAsyncEventArgs objects for use with each 
-        // socket I/O operation.  
-        // This enables buffers to be easily reused and guards against 
+        // This class creates a single large buffer which can be divided up
+        // and assigned to SocketAsyncEventArgs objects for use with each
+        // socket I/O operation.
+        // This enables buffers to be easily reused and guards against
         // fragmenting heap memory.
-        // 
+        //
         //This buffer is a byte array which the Windows TCP buffer can copy its data to.
 
         // the total number of bytes controlled by the buffer pool
-        Int32 totalBytesInBufferBlock;
+        private Int32 totalBytesInBufferBlock;
 
         // Byte array maintained by the Buffer Manager.
-        byte[] bufferBlock;
-        Stack<int> freeIndexPool;
-        Int32 currentIndex;
-        Int32 bufferBytesAllocatedForEachSaea;
+        private byte[] bufferBlock;
+
+        private Stack<int> freeIndexPool;
+        private Int32 currentIndex;
+        private Int32 bufferBytesAllocatedForEachSaea;
 
         public BufferManager(Int32 totalBytes, Int32 totalBufferBytesInEachSaeaObject)
         {
@@ -41,7 +40,7 @@ namespace ServerSuperIO.Communicate.NET
         }
 
         // Divide that one large buffer block out to each SocketAsyncEventArg object.
-        // Assign a buffer space from the buffer block to the 
+        // Assign a buffer space from the buffer block to the
         // specified SocketAsyncEventArgs object.
         //
         // returns true if the buffer was successfully set, else false
@@ -50,13 +49,13 @@ namespace ServerSuperIO.Communicate.NET
             if (this.freeIndexPool.Count > 0)
             {
                 //This if-statement is only true if you have called the FreeBuffer
-                //method previously, which would put an offset for a buffer space 
+                //method previously, which would put an offset for a buffer space
                 //back into this stack.
                 args.SetBuffer(this.bufferBlock, this.freeIndexPool.Pop(), this.bufferBytesAllocatedForEachSaea);
             }
             else
             {
-                //Inside this else-statement is the code that is used to set the 
+                //Inside this else-statement is the code that is used to set the
                 //buffer for each SAEA object when the pool of SAEA objects is built
                 //in the Init method.
                 if ((totalBytesInBufferBlock - this.bufferBytesAllocatedForEachSaea) < this.currentIndex)

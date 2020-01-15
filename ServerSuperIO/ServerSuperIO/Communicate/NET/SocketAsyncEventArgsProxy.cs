@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Sockets;
-using System.Text;
+﻿using System.Net.Sockets;
 
 namespace ServerSuperIO.Communicate.NET
 {
-    public class SocketAsyncEventArgsProxy:ISocketAsyncEventArgsProxy
+    public class SocketAsyncEventArgsProxy : ISocketAsyncEventArgsProxy
     {
         public SocketAsyncEventArgsProxy(SocketAsyncEventArgsEx saea)
         {
             SocketReceiveEventArgsEx = saea;
-            SocketSendEventArgs=new SocketAsyncEventArgs();
+            SocketSendEventArgs = new SocketAsyncEventArgs();
         }
 
         public SocketAsyncEventArgsEx SocketReceiveEventArgsEx { get; set; }

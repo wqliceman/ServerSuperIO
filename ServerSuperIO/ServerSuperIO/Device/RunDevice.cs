@@ -1,20 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Timers;
-using ServerSuperIO.Common;
+﻿using ServerSuperIO.Common;
 using ServerSuperIO.Communicate;
-using ServerSuperIO.DataCache;
 using ServerSuperIO.Device.Connector;
-using ServerSuperIO.Log;
 using ServerSuperIO.Protocol;
 using ServerSuperIO.Protocol.Filter;
 using ServerSuperIO.Server;
 using ServerSuperIO.Service.Connector;
+using System;
+using System.Collections.Generic;
+using System.Timers;
 
 namespace ServerSuperIO.Device
 {
@@ -58,11 +51,11 @@ namespace ServerSuperIO.Device
         public abstract void Initialize(string devid);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="dataOrientation"></param>
         /// <param name="data"></param>
-        public void SaveOriginalBytes(DataOrientation dataOrientation,byte[] data)
+        public void SaveOriginalBytes(DataOrientation dataOrientation, byte[] data)
         {
             if (this.DeviceParameter.IsSaveOriginBytes)
             {
@@ -140,7 +133,7 @@ namespace ServerSuperIO.Device
             }
             else
             {
-               return  Receive(io, receiveFilter);
+                return Receive(io, receiveFilter);
             }
         }
 
@@ -161,7 +154,7 @@ namespace ServerSuperIO.Device
                     int dataLength = 0;
                     try
                     {
-                        dataLength = this.Protocol.GetPackageLength(ri.Data,io, ref readTimeout);
+                        dataLength = this.Protocol.GetPackageLength(ri.Data, io, ref readTimeout);
                     }
                     catch (Exception ex)
                     {
@@ -211,7 +204,7 @@ namespace ServerSuperIO.Device
                     //-------------------发送数据----------------------------//
                     this.Send(io, data);
 
-                    this.ChannelMonitorData(DataOrientation.Send,data);
+                    this.ChannelMonitorData(DataOrientation.Send, data);
 
                     this.SaveOriginalBytes(DataOrientation.Send, data);
                 }
@@ -276,9 +269,9 @@ namespace ServerSuperIO.Device
         private void InternalRun(string key, IChannel io, IRequestInfo info)
         {
             #region
-            this.ChannelMonitorData(DataOrientation.Receive,info.Data);
+            this.ChannelMonitorData(DataOrientation.Receive, info.Data);
 
-            this.SaveOriginalBytes(DataOrientation.Receive,info.Data);
+            this.SaveOriginalBytes(DataOrientation.Receive, info.Data);
 
             //---------------------检测通讯状态----------------------//
             CommunicateState state = this.CheckCommunicateState(info.Data);
@@ -473,7 +466,6 @@ namespace ServerSuperIO.Device
         /// </summary>
         public virtual void OnRunTimer()
         {
-
         }
 
         /// <summary>
@@ -486,13 +478,13 @@ namespace ServerSuperIO.Device
         /// </summary>
         /// <param name="dataOrientation"></param>
         /// <param name="data"></param>
-        public void ChannelMonitorData(DataOrientation dataOrientation,byte[] data)
+        public void ChannelMonitorData(DataOrientation dataOrientation, byte[] data)
         {
             if (IsChannelMonitor)
             {
                 if (ChannelMonitor != null)
                 {
-                    ChannelMonitor.DataMonitor(dataOrientation,data);
+                    ChannelMonitor.DataMonitor(dataOrientation, data);
                 }
             }
         }
@@ -664,16 +656,15 @@ namespace ServerSuperIO.Device
         {
             if (DeleteDevice == null) return;
 
-            DeleteDeviceArgs args=new DeleteDeviceArgs(
+            DeleteDeviceArgs args = new DeleteDeviceArgs(
                 this.DeviceParameter.DeviceID,
                 this.DeviceParameter.DeviceCode,
                 this.DeviceParameter.DeviceAddr,
                 this.DeviceParameter.DeviceName
                 );
 
-            DeleteDevice(this,args);
+            DeleteDevice(this, args);
         }
-
 
         public event UpdateContainerHandler UpdateContainer;
 
@@ -743,6 +734,7 @@ namespace ServerSuperIO.Device
         }
 
         #region 设备连接器
+
         public abstract object RunDeviceConnector(IFromDevice fromDevice, IDeviceToDevice toDevice);
 
         public abstract void DeviceConnectorCallback(object obj);
@@ -750,12 +742,14 @@ namespace ServerSuperIO.Device
         public abstract void DeviceConnectorCallbackError(Exception ex);
 
         public event DeviceConnectorHandler DeviceConnector;
+
         public void OnDeviceConnector(IFromDevice fromDevice, IDeviceToDevice toDevice)
         {
             if (DeviceConnector == null) return;
 
-            DeviceConnector(this, new DeviceConnectorArgs(fromDevice,toDevice));
+            DeviceConnector(this, new DeviceConnectorArgs(fromDevice, toDevice));
         }
+
         #endregion
 
         #region 服务连接器

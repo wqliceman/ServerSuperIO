@@ -1,37 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using ServerSuperIO.Communicate;
+﻿using ServerSuperIO.Communicate;
 using ServerSuperIO.Communicate.NET;
 using ServerSuperIO.Config;
 using ServerSuperIO.Server;
+using System;
 
 namespace TestTcpListener
 {
-    class Program
+    internal class Program
     {
-        static IServer _server;
+        private static IServer _server;
         private static int _Counter = 0;
-        static void Main(string[] args)
+
+        private static void Main(string[] args)
         {
-            _server=new ServerManager().CreateServer(new ServerConfig()
+            _server = new ServerManager().CreateServer(new ServerConfig()
             {
                 ServerName = "myserver",
                 SocketMode = SocketMode.Udp,
-                ControlMode=ControlMode.Parallel,
+                ControlMode = ControlMode.Parallel,
                 CheckSameSocketSession = false,
             });
             _server.SocketConnected += server_SocketConnected;
-            _server.SocketClosed+=server_SocketClosed;
+            _server.SocketClosed += server_SocketClosed;
             _server.Start();
 
             while (true)
             {
-                string str=Console.ReadLine();
+                string str = Console.ReadLine();
 
                 if (str == "stop")
                 {
@@ -57,7 +52,7 @@ namespace TestTcpListener
             lock (_server)
             {
                 _Counter++;
-                Console.WriteLine(String.Format("{0},连接：{1}-{2} 成功", _Counter,ip, port));
+                Console.WriteLine(String.Format("{0},连接：{1}-{2} 成功", _Counter, ip, port));
             }
         }
     }

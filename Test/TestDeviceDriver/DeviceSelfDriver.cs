@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TestDeviceDriver
+﻿namespace TestDeviceDriver
 {
-    public class DeviceSelfDriver:DeviceDriver
+    public class DeviceSelfDriver : DeviceDriver
     {
         public DeviceSelfDriver() : base()
         {
-            
         }
+
         public override void Initialize(string devid)
         {
             base.Initialize(devid);

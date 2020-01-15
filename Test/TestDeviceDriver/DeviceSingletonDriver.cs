@@ -1,25 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using ServerSuperIO.Common;
-using ServerSuperIO.Communicate;
+﻿using ServerSuperIO.Common;
 using ServerSuperIO.Communicate.NET;
 using ServerSuperIO.Device;
 using ServerSuperIO.Device.Connector;
 using ServerSuperIO.Protocol;
-using ServerSuperIO.Protocol.Filter;
 using ServerSuperIO.Service.Connector;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace TestDeviceDriver
 {
-    public class DeviceSingletonDriver:RunDevice
+    public class DeviceSingletonDriver : RunDevice
     {
         private DeviceDyn _deviceDyn;
         private DevicePara _devicePara;
         private DeviceProtocol _protocol;
+
         public DeviceSingletonDriver()
             : base()
         {
@@ -33,7 +29,7 @@ namespace TestDeviceDriver
             this.Protocol.InitDriver(this.GetType(), null);
 
             //初始化设备参数信息
-            
+
             _devicePara.DeviceID = devid;//设备的ID必须先赋值，因为要查找对应的参数文件。
             if (System.IO.File.Exists(_devicePara.SavePath))
             {
@@ -71,15 +67,15 @@ namespace TestDeviceDriver
             try
             {
                 string hexs = BinaryUtil.ByteToHex(info.Data);
-                
+
                 Dyn dyn = this.Protocol.DriverAnalysis<String>("61", info.Data, null);
                 if (dyn != null)
                 {
                     _deviceDyn.Dyn = dyn;
-                    OnDeviceRuningLog("接收>>" + dyn.Flow.ToString()+","+dyn.Signal.ToString());
+                    OnDeviceRuningLog("接收>>" + dyn.Flow.ToString() + "," + dyn.Signal.ToString());
                 }
-                Task.Factory.StartNew(() => {
-
+                Task.Factory.StartNew(() =>
+                {
                     if (info.Channel != null)
                     {
                         lock (info.Channel.SyncLock)
@@ -88,14 +84,13 @@ namespace TestDeviceDriver
                         }
                     }
                 });
-               
+
                 OnDeviceRuningLog("通讯正常");
             }
             catch (Exception ex)
             {
                 OnDeviceRuningLog(ex.Message);
             }
-          
         }
 
         public override void CommunicateInterrupt(ServerSuperIO.Communicate.IRequestInfo info)
@@ -132,7 +127,7 @@ namespace TestDeviceDriver
 
         public override void Show()
         {
-            List<string> list=new List<string>();
+            List<string> list = new List<string>();
             list.Add(_devicePara.DeviceName);
             list.Add(_deviceDyn.Dyn.Flow.ToString());
             list.Add(_deviceDyn.Dyn.Signal.ToString());
@@ -189,7 +184,8 @@ namespace TestDeviceDriver
             get { return _devicePara; }
         }
 
-        public override IProtocolDriver Protocol {
+        public override IProtocolDriver Protocol
+        {
             get { return _protocol; }
         }
 

@@ -2,7 +2,7 @@
 
 namespace ServerSuperIO.Device
 {
-    public interface IVirtualDevice:IPlugin
+    public interface IVirtualDevice : IPlugin
     {
         /// <summary>
         /// 运行虚拟设备

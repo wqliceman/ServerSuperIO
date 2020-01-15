@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-
-namespace ServerSuperIO.Protocol
+﻿namespace ServerSuperIO.Protocol
 {
     public interface IProtocolCommand
     {
-
         /// <summary>
         /// 安装协议驱动
         /// </summary>
@@ -33,7 +26,7 @@ namespace ServerSuperIO.Protocol
         void ExcuteCommand<T>(T t);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <typeparam name="T1"></typeparam>
         /// <typeparam name="T2"></typeparam>
@@ -51,7 +44,7 @@ namespace ServerSuperIO.Protocol
         dynamic Analysis<T>(byte[] data, T t);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <typeparam name="T1"></typeparam>
         /// <typeparam name="T2"></typeparam>
@@ -59,7 +52,7 @@ namespace ServerSuperIO.Protocol
         /// <param name="t1"></param>
         /// <param name="t2"></param>
         /// <returns></returns>
-        dynamic Analysis<T1,T2>(byte[] data, T1 t1,T2 t2);
+        dynamic Analysis<T1, T2>(byte[] data, T1 t1, T2 t2);
 
         /// <summary>
         /// 打包数据
@@ -71,7 +64,7 @@ namespace ServerSuperIO.Protocol
         byte[] Package<T>(string code, T t);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <typeparam name="T1"></typeparam>
         /// <typeparam name="T2"></typeparam>

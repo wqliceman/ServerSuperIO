@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using ServerSuperIO.Base;
+﻿using ServerSuperIO.Base;
 using ServerSuperIO.Communicate;
 using ServerSuperIO.DataCache;
 using ServerSuperIO.Protocol;
 using ServerSuperIO.Protocol.Filter;
+using System;
 
 namespace ServerSuperIO.Device
 {
-    public abstract class ProtocolDriver:IProtocolDriver
+    public abstract class ProtocolDriver : IProtocolDriver
     {
-        private Manager<string,IProtocolCommand> _Commands = null;
+        private Manager<string, IProtocolCommand> _Commands = null;
 
         /// <summary>
         /// 构造函数
@@ -21,7 +17,7 @@ namespace ServerSuperIO.Device
         protected ProtocolDriver()
         {
             _Commands = new Manager<string, IProtocolCommand>();
-            SendCache=new SendCache();
+            SendCache = new SendCache();
         }
 
         /// <summary>
@@ -80,7 +76,7 @@ namespace ServerSuperIO.Device
         public IProtocolCommand GetProcotolCommand(string cmdName)
         {
             IProtocolCommand cmd;
-            if (this._Commands!=null && this._Commands.TryGetValue(cmdName, out cmd))
+            if (this._Commands != null && this._Commands.TryGetValue(cmdName, out cmd))
             {
                 return cmd;
             }
@@ -96,7 +92,7 @@ namespace ServerSuperIO.Device
         /// <typeparam name="T"></typeparam>
         /// <param name="cmdName"></param>
         /// <param name="t"></param>
-        public void DriverCommand<T>(string cmdName,T t)
+        public void DriverCommand<T>(string cmdName, T t)
         {
             IProtocolCommand cmd = GetProcotolCommand(cmdName);
             if (cmd != null)
@@ -110,7 +106,7 @@ namespace ServerSuperIO.Device
             IProtocolCommand cmd = GetProcotolCommand(cmdName);
             if (cmd != null)
             {
-                cmd.ExcuteCommand<T1,T2>(t1,t2);
+                cmd.ExcuteCommand<T1, T2>(t1, t2);
             }
         }
 
@@ -128,7 +124,7 @@ namespace ServerSuperIO.Device
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <typeparam name="T1"></typeparam>
         /// <typeparam name="T2"></typeparam>
@@ -137,7 +133,7 @@ namespace ServerSuperIO.Device
         /// <param name="t1"></param>
         /// <param name="t2"></param>
         /// <returns></returns>
-        public dynamic DriverAnalysis<T1,T2>(string cmdName, byte[] data, T1 t1,T2 t2)
+        public dynamic DriverAnalysis<T1, T2>(string cmdName, byte[] data, T1 t1, T2 t2)
         {
             IProtocolCommand cmd = GetProcotolCommand(cmdName);
             if (cmd != null)
@@ -149,7 +145,6 @@ namespace ServerSuperIO.Device
                 return null;
             }
         }
-
 
         public byte[] DriverPackage<T>(string code, string cmdName, T t)
         {
@@ -165,7 +160,7 @@ namespace ServerSuperIO.Device
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <typeparam name="T1"></typeparam>
         /// <typeparam name="T2"></typeparam>
@@ -174,7 +169,7 @@ namespace ServerSuperIO.Device
         /// <param name="t1"></param>
         /// <param name="t2"></param>
         /// <returns></returns>
-        public byte[] DriverPackage<T1, T2>(string code, string cmdName, T1 t1,T2 t2)
+        public byte[] DriverPackage<T1, T2>(string code, string cmdName, T1 t1, T2 t2)
         {
             IProtocolCommand cmd = GetProcotolCommand(cmdName);
             if (cmd != null)
@@ -244,7 +239,6 @@ namespace ServerSuperIO.Device
         /// <param name="data"></param>
         /// <returns></returns>
         public abstract byte[] GetEnd(byte[] data);
-
 
         /// <summary>
         /// 发送数据缓存

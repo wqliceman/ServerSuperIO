@@ -1,25 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ServerSuperIO.Communicate;
-using ServerSuperIO.Communicate.NET;
+﻿using ServerSuperIO.Communicate;
 using ServerSuperIO.Config;
 using ServerSuperIO.Server;
-using ServerSuperIO.Service;
-using ServerSuperIO.Show;
+using System;
 using TestDeviceDriver;
-using TestService;
-using TestShowForm;
 
 namespace TestSingletonMain
 {
-    class Program
+    internal class Program
     {
-        private static object _obj=new object();
+        private static object _obj = new object();
         private static volatile int _counter = 0;
-        static void Main(string[] args)
+
+        private static void Main(string[] args)
         {
             //55 AA 00 61 43 7A 00 00 43 B4 15 0D
             DeviceSingletonDriver dev1 = new DeviceSingletonDriver();
@@ -43,8 +35,8 @@ namespace TestSingletonMain
 
             server.AddDeviceCompleted += server_AddDeviceCompleted;
             server.DeleteDeviceCompleted += server_DeleteDeviceCompleted;
-            server.SocketConnected+=server_SocketConnected;
-            server.SocketClosed+=server_SocketClosed;
+            server.SocketConnected += server_SocketConnected;
+            server.SocketClosed += server_SocketClosed;
             server.Start();
 
             server.AddDevice(dev1);
@@ -57,16 +49,14 @@ namespace TestSingletonMain
 
         private static void server_SocketClosed(string ip, int port)
         {
-
-                _counter--;
+            _counter--;
             Console.WriteLine(String.Format("{0},连接：{1}-{2} 断开", _counter, ip, port));
         }
 
         private static void server_SocketConnected(string ip, int port)
         {
-
-                _counter++;
-                Console.WriteLine(String.Format("{0},连接：{1}-{2} 成功", _counter, ip, port));
+            _counter++;
+            Console.WriteLine(String.Format("{0},连接：{1}-{2} 成功", _counter, ip, port));
         }
 
         private static void s_AppServiceLog(string log)

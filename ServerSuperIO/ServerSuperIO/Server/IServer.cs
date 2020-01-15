@@ -1,23 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Windows.Forms;
-using ServerSuperIO.Communicate;
-using ServerSuperIO.Communicate.COM;
-using ServerSuperIO.Communicate.NET;
+﻿using ServerSuperIO.Communicate;
 using ServerSuperIO.Config;
 using ServerSuperIO.Device;
 using ServerSuperIO.Log;
 using ServerSuperIO.Service;
 using ServerSuperIO.Show;
+using System;
+using System.Windows.Forms;
 
 namespace ServerSuperIO.Server
 {
-    public interface IServer:IDisposable,ILoggerProvider,IServerConfigProvider
+    public interface IServer : IDisposable, ILoggerProvider, IServerConfigProvider
     {
         #region 函数
+
         /// <summary>
         /// 服务名称
         /// </summary>
@@ -33,11 +28,11 @@ namespace ServerSuperIO.Server
         /// </summary>
         void Stop();
 
-     /// <summary>
-     /// 
-     /// </summary>
-     /// <param name="dev"></param>
-     /// <returns>返回设备ID</returns>
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="dev"></param>
+        /// <returns>返回设备ID</returns>
         string AddDevice(IRunDevice dev);
 
         /// <summary>
@@ -52,7 +47,7 @@ namespace ServerSuperIO.Server
         /// <param name="graphicsShow"></param>
         /// <param name="window"></param>
         /// <returns></returns>
-        bool AddGraphicsShow(IGraphicsShow graphicsShow,IWin32Window window);
+        bool AddGraphicsShow(IGraphicsShow graphicsShow, IWin32Window window);
 
         /// <summary>
         /// 删除显示
@@ -82,11 +77,13 @@ namespace ServerSuperIO.Server
         /// <param name="oldBaud"></param>
         /// <param name="newCom"></param>
         /// <param name="newBaud"></param>
-       
+
         void ChangeDeviceComInfo(string devid, int oldCom, int oldBaud, int newCom, int newBaud);
-        #endregion
+
+        #endregion 函数
 
         #region 属性
+
         /// <summary>
         /// 设备管理器
         /// </summary>
@@ -105,16 +102,17 @@ namespace ServerSuperIO.Server
         /// <summary>
         /// 服务管理
         /// </summary>
-        IServiceManager<string,IService> ServiceManager { get; }
+        IServiceManager<string, IService> ServiceManager { get; }
 
         /// <summary>
         /// 显示管理
         /// </summary>
         IGraphicsShowManager<string, IGraphicsShow> GraphicsShowManager { get; }
 
-        #endregion
+        #endregion 属性
 
         #region 事件
+
         /// <summary>
         /// 增加设备完成事件
         /// </summary>
@@ -144,6 +142,7 @@ namespace ServerSuperIO.Server
         /// 关闭Socket
         /// </summary>
         event SocketClosedHandler SocketClosed;
-        #endregion
+
+        #endregion 事件
     }
 }

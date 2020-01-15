@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ServerSuperIO.DataCache
+﻿namespace ServerSuperIO.DataCache
 {
     public interface ISendCommand
     {

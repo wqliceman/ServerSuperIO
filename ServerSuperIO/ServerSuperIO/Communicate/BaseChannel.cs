@@ -1,23 +1,22 @@
-﻿using System;
+﻿using ServerSuperIO.Protocol.Filter;
+using ServerSuperIO.Server;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using ServerSuperIO.Protocol.Filter;
-using ServerSuperIO.Server;
 
 namespace ServerSuperIO.Communicate
 {
-    public abstract class BaseChannel : ServerProvider,IChannel
+    public abstract class BaseChannel : ServerProvider, IChannel
     {
         private object _SyncLock = new object();
         public abstract CommunicateType CommunicationType { get; }
         public abstract bool IsDisposed { get; }
         public abstract string Key { get; }
         public abstract string SessionID { get; protected set; }
-        public object SyncLock {
-            get { return _SyncLock;}
+
+        public object SyncLock
+        {
+            get { return _SyncLock; }
         }
 
         /// <summary>
@@ -26,7 +25,7 @@ namespace ServerSuperIO.Communicate
         /// <param name="dataLength"></param>
         /// <param name="readTimeout"></param>
         /// <returns></returns>
-        internal byte[] ReceivePackageData(int dataLength,int readTimeout)
+        internal byte[] ReceivePackageData(int dataLength, int readTimeout)
         {
             byte[] bigData = null;
             CancellationTokenSource cts = new CancellationTokenSource();
@@ -50,9 +49,11 @@ namespace ServerSuperIO.Communicate
         public abstract void Initialize();
 
         public abstract IChannel Channel { get; }
+
         public abstract void Close();
+
         public abstract void Dispose();
-        
+
         public abstract int Write(byte[] data);
 
         /// <summary>
@@ -61,7 +62,6 @@ namespace ServerSuperIO.Communicate
         /// <param name="receiveFilter"></param>
         /// <returns></returns>
         public abstract IList<byte[]> Read(IReceiveFilter receiveFilter);
-
 
         /// <summary>
         /// 异步读取只写长度的数据

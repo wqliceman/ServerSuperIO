@@ -1,12 +1,9 @@
-﻿using System;
+﻿using ServerSuperIO.Log;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ServerSuperIO.Log;
 
 namespace ServerSuperIO.Communicate
 {
-    public interface IChannelManager<TKey,TValue>:ILoggerProvider where TValue:IChannel
+    public interface IChannelManager<TKey, TValue> : ILoggerProvider where TValue : IChannel
     {
         /// <summary>
         /// 同步对象
@@ -35,7 +32,7 @@ namespace ServerSuperIO.Communicate
         TValue GetChannel(string ioPara1, CommunicateType comType);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="ioPara1"></param>
         /// <param name="ioPara2"></param>
@@ -50,7 +47,7 @@ namespace ServerSuperIO.Communicate
         /// <returns></returns>
         ICollection<TValue> GetChannels(CommunicateType ioType);
 
-            /// <summary>
+        /// <summary>
         /// 获得值集合
         /// </summary>
         /// <returns></returns>
@@ -81,7 +78,7 @@ namespace ServerSuperIO.Communicate
         void RemoveAllChannel();
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         int ChannelCount { get; }
     }

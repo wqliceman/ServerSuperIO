@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace ServerSuperIO.Show
 {
-    public abstract class GraphicsShow:IGraphicsShow
+    public abstract class GraphicsShow : IGraphicsShow
     {
         protected GraphicsShow()
         {
         }
 
-        public abstract string ShowKey { get;  }
+        public abstract string ShowKey { get; }
 
         public abstract string ShowName { get; }
 

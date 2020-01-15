@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace ServerSuperIO.Log
 {
@@ -17,7 +14,7 @@ namespace ServerSuperIO.Log
 
         bool IsWarnEnabled { get; }
 
-        void Debug(bool isWriteFile,object message);
+        void Debug(bool isWriteFile, object message);
 
         void Debug(bool isWriteFile, object message, Exception exception);
 
@@ -31,7 +28,7 @@ namespace ServerSuperIO.Log
 
         void DebugFormat(bool isWriteFile, string format, object arg0, object arg1, object arg2);
 
-        void Error(bool isWriteFile,object message);
+        void Error(bool isWriteFile, object message);
 
         void Error(bool isWriteFile, object message, Exception exception);
 

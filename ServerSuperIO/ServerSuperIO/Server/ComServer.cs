@@ -1,26 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using ServerSuperIO.Base;
-using ServerSuperIO.Communicate;
+﻿using ServerSuperIO.Communicate;
 using ServerSuperIO.Communicate.COM;
-using ServerSuperIO.Communicate.NET;
 using ServerSuperIO.Config;
 using ServerSuperIO.Device;
 using ServerSuperIO.Log;
-using ServerSuperIO.Service;
-using ServerSuperIO.Show;
+using System;
+using System.Linq;
 
 namespace ServerSuperIO.Server
 {
     public abstract class ComServer : ServerBase
     {
-        internal ComServer(IServerConfig config,IDeviceContainer deviceContainer = null, ILogContainer logContainer = null)
-            : base(config, deviceContainer,logContainer)
+        internal ComServer(IServerConfig config, IDeviceContainer deviceContainer = null, ILogContainer logContainer = null)
+            : base(config, deviceContainer, logContainer)
         {
-           
         }
 
         public override void Start()
@@ -52,7 +44,7 @@ namespace ServerSuperIO.Server
                     if (oldComPort != newComPort)
                     {
                         #region 对旧串口进行处理
-                       
+
                         //--------------对旧串口进行处理----------------//
                         IRunDevice[] oldComDevList = DeviceManager.GetDevices(oldComPort.ToString(), CommunicateType.COM);
 
@@ -90,9 +82,11 @@ namespace ServerSuperIO.Server
                                 Logger.Info(true, "该设备的串口控制器为空");
                             }
                         }
-                        #endregion
+
+                        #endregion 对旧串口进行处理
 
                         #region 对新串口进行处理
+
                         string newKey = ComUtils.PortToString(newComPort);
                         //--------------对新串口进行处理----------------//
                         bool newComControllerExist = ControllerManager.ContainController(newKey);
@@ -142,11 +136,13 @@ namespace ServerSuperIO.Server
                         {
                             Logger.Info(true, String.Format("{0},串口从{1}改为{2},失败", dev.DeviceParameter.DeviceName, oldComPort.ToString(), newComPort.ToString()));
                         }
-                        #endregion
+
+                        #endregion 对新串口进行处理
                     }
                     else
                     {
                         #region 波特率
+
                         if (oldComBaud != newComBaud)
                         {
                             IComSession comIO = (IComSession)ChannelManager.GetChannel(ComUtils.PortToString(oldComPort));
@@ -156,7 +152,7 @@ namespace ServerSuperIO.Server
                                 if (success)
                                 {
                                     dev.DeviceParameter.COM.Baud = newComBaud;
-                                    Logger.Info(true, String.Format("{0},串口{1}的波特率从{2}改为{3},成功", dev.DeviceParameter.DeviceName,oldComPort.ToString(), oldComBaud.ToString(), newComBaud.ToString()));
+                                    Logger.Info(true, String.Format("{0},串口{1}的波特率从{2}改为{3},成功", dev.DeviceParameter.DeviceName, oldComPort.ToString(), oldComBaud.ToString(), newComBaud.ToString()));
                                 }
                                 else
                                 {
@@ -164,7 +160,8 @@ namespace ServerSuperIO.Server
                                 }
                             }
                         }
-                        #endregion
+
+                        #endregion 波特率
                     }
                 }
                 else
@@ -202,7 +199,7 @@ namespace ServerSuperIO.Server
 
         protected override void BindDeviceHandler(IRunDevice dev, DeviceType devType, bool isBind)
         {
-            if(devType != DeviceType.Virtual)
+            if (devType != DeviceType.Virtual)
             {
                 if (isBind)
                 {
@@ -220,7 +217,7 @@ namespace ServerSuperIO.Server
                 }
             }
 
-            base.BindDeviceHandler(dev,devType,isBind);
+            base.BindDeviceHandler(dev, devType, isBind);
         }
 
         private void ComParameterExchange(object source, ComParameterExchangeArgs e)

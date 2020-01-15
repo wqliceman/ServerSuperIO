@@ -1,30 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using ServerSuperIO.Communicate;
+﻿using ServerSuperIO.Communicate;
 using ServerSuperIO.Device;
 using ServerSuperIO.Device.Connector;
 using ServerSuperIO.Protocol;
 using ServerSuperIO.Protocol.Filter;
 using ServerSuperIO.Service.Connector;
+using System;
 
 namespace TransFileDriver
 {
-    public class ReceiveFileDriver:RunDevice
+    public class ReceiveFileDriver : RunDevice
     {
         private Dynamic _Dyn;
         private Parameter _Parameter;
         private Protocol _Protocol;
+
         public ReceiveFileDriver() : base()
         {
             _Dyn = new Dynamic();
             _Parameter = new Parameter();
             _Protocol = new Protocol();
         }
-
 
         public override void Initialize(string devid)
         {
@@ -38,7 +33,7 @@ namespace TransFileDriver
 
         public override void Communicate(IRequestInfo info)
         {
-            object obj = this.Protocol.DriverAnalysis<String,String>("writefile", info.Data, null,null);
+            object obj = this.Protocol.DriverAnalysis<String, String>("writefile", info.Data, null, null);
             if (obj.ToString() == "0")
             {
                 OnDeviceRuningLog("写入文件成功");
@@ -119,22 +114,34 @@ namespace TransFileDriver
             //throw new NotImplementedException();
         }
 
-        public override IDeviceDynamic DeviceDynamic {
-            get { return _Dyn;
+        public override IDeviceDynamic DeviceDynamic
+        {
+            get
+            {
+                return _Dyn;
             }
         }
-        public override IDeviceParameter DeviceParameter {
+
+        public override IDeviceParameter DeviceParameter
+        {
             get { return _Parameter; }
         }
-        public override IProtocolDriver Protocol {
+
+        public override IProtocolDriver Protocol
+        {
             get { return _Protocol; }
         }
-        public override DeviceType DeviceType {
-            get { return DeviceType.Common;}
+
+        public override DeviceType DeviceType
+        {
+            get { return DeviceType.Common; }
         }
-        public override string ModelNumber {
+
+        public override string ModelNumber
+        {
             get { return "TransFile"; }
         }
+
         public override object RunDeviceConnector(IFromDevice fromDevice, IDeviceToDevice toDevice)
         {
             throw new NotImplementedException();

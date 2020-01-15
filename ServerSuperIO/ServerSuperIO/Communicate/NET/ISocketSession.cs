@@ -1,25 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
 
 namespace ServerSuperIO.Communicate.NET
 {
-    public interface ISocketSession:IChannel
+    public interface ISocketSession : IChannel
     {
         #region 属性
+
         /// <summary>
         /// 远程网络连接的IP
         /// </summary>
-        string RemoteIP { get;  }
+        string RemoteIP { get; }
 
         /// <summary>
         /// 远程网络连接的Port
         /// </summary>
-        int RemotePort { get;  }
+        int RemotePort { get; }
 
         /// <summary>
         /// Socket实例
@@ -55,10 +52,10 @@ namespace ServerSuperIO.Communicate.NET
         /// 发送数据
         /// </summary>
         /// <param name="type">true:异步，false:同步</param>
-        void TrySend(byte[] data,bool type);
+        void TrySend(byte[] data, bool type);
 
         /// <summary>
-        /// 链接的时间 
+        /// 链接的时间
         /// </summary>
         DateTime StartTime { get; }
 
@@ -67,6 +64,6 @@ namespace ServerSuperIO.Communicate.NET
         /// </summary>
         DateTime LastActiveTime { get; set; }
 
-        #endregion
+        #endregion 属性
     }
 }

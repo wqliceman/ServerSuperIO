@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace ServerSuperIO.Communicate.NET
 {
@@ -12,7 +10,7 @@ namespace ServerSuperIO.Communicate.NET
             RemoteIP = String.Empty;
             RemotePort = -1;
             RequestInfos = new List<IRequestInfo>();
-           // DeviceCode = String.Empty;
+            // DeviceCode = String.Empty;
         }
 
         public ReceivePackage(string remoteIP, int remotePort, IList<IRequestInfo> listRI)
@@ -23,12 +21,12 @@ namespace ServerSuperIO.Communicate.NET
             //DeviceCode = deviceCode;
         }
 
-        public IList<IRequestInfo> RequestInfos { get;  set; }
+        public IList<IRequestInfo> RequestInfos { get; set; }
 
-        public string RemoteIP { get;  set; }
+        public string RemoteIP { get; set; }
 
-        public int RemotePort { get;  set; }
+        public int RemotePort { get; set; }
 
-      // public string DeviceCode { get; set; }
+        // public string DeviceCode { get; set; }
     }
 }

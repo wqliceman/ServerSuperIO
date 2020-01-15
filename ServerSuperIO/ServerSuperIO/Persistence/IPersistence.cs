@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace ServerSuperIO.Persistence
+﻿namespace ServerSuperIO.Persistence
 {
     public interface IPersistence
     {
@@ -12,7 +7,7 @@ namespace ServerSuperIO.Persistence
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="t"></param>
-        void Save<T>(T t);   
+        void Save<T>(T t);
 
         /// <summary>
         /// 加载

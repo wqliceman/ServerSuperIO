@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using ServerSuperIO.Communicate;
+﻿using ServerSuperIO.Communicate;
 using ServerSuperIO.DataCache;
-using ServerSuperIO.Device;
 using ServerSuperIO.Protocol.Filter;
+using System;
 
 namespace ServerSuperIO.Protocol
 {
@@ -32,21 +27,20 @@ namespace ServerSuperIO.Protocol
         /// <typeparam name="T"></typeparam>
         /// <param name="cmdName"></param>
         /// <param name="t"></param>
-        void DriverCommand<T>(string cmdName,T t);
-
-
-  /// <summary>
-  /// 
-  /// </summary>
-  /// <typeparam name="T1"></typeparam>
-  /// <typeparam name="T2"></typeparam>
-  /// <param name="cmdName"></param>
-  /// <param name="t1"></param>
-  /// <param name="t2"></param>
-        void DriverCommand<T1,T2>(string cmdName, T1 t1,T2 t2);
+        void DriverCommand<T>(string cmdName, T t);
 
         /// <summary>
-        /// 
+        ///
+        /// </summary>
+        /// <typeparam name="T1"></typeparam>
+        /// <typeparam name="T2"></typeparam>
+        /// <param name="cmdName"></param>
+        /// <param name="t1"></param>
+        /// <param name="t2"></param>
+        void DriverCommand<T1, T2>(string cmdName, T1 t1, T2 t2);
+
+        /// <summary>
+        ///
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="cmdName"></param>
@@ -56,7 +50,7 @@ namespace ServerSuperIO.Protocol
         dynamic DriverAnalysis<T>(string cmdName, byte[] data, T t);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <typeparam name="T1"></typeparam>
         /// <typeparam name="T2"></typeparam>
@@ -68,7 +62,7 @@ namespace ServerSuperIO.Protocol
         dynamic DriverAnalysis<T1, T2>(string cmdName, byte[] data, T1 t1, T2 t2);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="code"></param>
@@ -78,7 +72,7 @@ namespace ServerSuperIO.Protocol
         byte[] DriverPackage<T>(string code, string cmdName, T t);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <typeparam name="T1"></typeparam>
         /// <typeparam name="T2"></typeparam>
@@ -131,7 +125,7 @@ namespace ServerSuperIO.Protocol
         /// <param name="channel">IO通道</param>
         /// <param name="readTimeout">返回读数据超时</param>
         /// <returns></returns>
-        int GetPackageLength(byte[] data,IChannel channel,ref int readTimeout);
+        int GetPackageLength(byte[] data, IChannel channel, ref int readTimeout);
 
         /// <summary>
         /// 协议头
@@ -155,6 +149,6 @@ namespace ServerSuperIO.Protocol
         /// <summary>
         /// 协议过滤器
         /// </summary>
-        IReceiveFilter ReceiveFilter { set;get; }
+        IReceiveFilter ReceiveFilter { set; get; }
     }
 }

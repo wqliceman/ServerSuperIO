@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace ServerSuperIO.Show
+﻿namespace ServerSuperIO.Show
 {
     /// <summary>
     /// 当单击右键触发这个事件

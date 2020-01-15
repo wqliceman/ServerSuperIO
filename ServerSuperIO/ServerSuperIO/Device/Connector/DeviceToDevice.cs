@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace ServerSuperIO.Device.Connector
+﻿namespace ServerSuperIO.Device.Connector
 {
-    public class DeviceToDevice:IDeviceToDevice
+    public class DeviceToDevice : IDeviceToDevice
     {
         public DeviceToDevice(string deviceCode, string text, byte[] dataBytes, object obj)
         {

@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ServerSuperIO.Common
 {
@@ -102,7 +97,7 @@ namespace ServerSuperIO.Common
                 throw new NullReferenceException("markBytes引用为空");
             }
 
-            if (length < markBytes.Length) //没有可比对的数据   
+            if (length < markBytes.Length) //没有可比对的数据
             {
                 return false;
             }

@@ -1,12 +1,9 @@
-﻿using System;
+﻿using ServerSuperIO.Log;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ServerSuperIO.Log;
 
 namespace ServerSuperIO.Communicate
 {
-    public interface IControllerManager<TKey, TValue> :ILoggerProvider where TValue:IController
+    public interface IControllerManager<TKey, TValue> : ILoggerProvider where TValue : IController
     {
         /// <summary>
         ///     增加控制器
@@ -53,7 +50,7 @@ namespace ServerSuperIO.Communicate
         ICollection<TKey> GetKeys();
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         int ControllerCount { get; }
     }

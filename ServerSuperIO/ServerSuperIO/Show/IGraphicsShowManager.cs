@@ -1,14 +1,9 @@
-﻿using System;
+﻿using ServerSuperIO.Log;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ServerSuperIO.Log;
-using ServerSuperIO.Show;
 
 namespace ServerSuperIO.Show
 {
-    public interface IGraphicsShowManager<TKey,TValue>: ILoggerProvider,IEnumerable where TValue : IGraphicsShow
+    public interface IGraphicsShowManager<TKey, TValue> : ILoggerProvider, IEnumerable where TValue : IGraphicsShow
     {
         TValue this[int index] { get; }
 

@@ -1,20 +1,13 @@
-﻿using System;
+﻿using ServerSuperIO.Device;
+using ServerSuperIO.Protocol.Filter;
+using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
-using System.Security.Policy;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using ServerSuperIO.Common;
-using ServerSuperIO.Device;
-using ServerSuperIO.Protocol;
-using ServerSuperIO.Protocol.Filter;
-using ServerSuperIO.Server;
 
 namespace ServerSuperIO.Communicate.NET
 {
@@ -103,7 +96,7 @@ namespace ServerSuperIO.Communicate.NET
                     {
                         if (!this.IsDisposed && this.Client != null)
                         {
-                            oneLength = this.Client.Receive(saeaEx.ReceiveBuffer, saeaEx.InitOffset, oneLength,SocketFlags.None);
+                            oneLength = this.Client.Receive(saeaEx.ReceiveBuffer, saeaEx.InitOffset, oneLength, SocketFlags.None);
                         }
                         else
                         {
@@ -422,7 +415,7 @@ namespace ServerSuperIO.Communicate.NET
                     if (e.UserToken == null) return;
 
                     byte[] data = (byte[])e.UserToken;
-                    
+
                     if (e.BytesTransferred < data.Length)
                     {
                         e.SetBuffer(data, e.BytesTransferred, data.Length - e.BytesTransferred);
@@ -502,9 +495,11 @@ namespace ServerSuperIO.Communicate.NET
                 case SocketAsyncOperation.Receive:
                     ProcessReceive(e);
                     break;
+
                 case SocketAsyncOperation.Send:
                     ProcessSend(e);
                     break;
+
                 default:
                     this.Server.Logger.Info(false, "不支持接收和发送的操作");
                     break;

@@ -1,20 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using ServerSuperIO.Log;
+using System;
 using System.Security.Permissions;
-using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-using ServerSuperIO.Log;
 
 namespace ServerSuperIO.Common
 {
     public class MonitorException
     {
         private ILog _log;
+
         public MonitorException()
         {
-            _log=new Log.Log("monitorexception",null);
+            _log = new Log.Log("monitorexception", null);
         }
 
         [SecurityPermission(SecurityAction.Demand, Flags = SecurityPermissionFlag.ControlAppDomain)]
@@ -36,7 +34,7 @@ namespace ServerSuperIO.Common
             {
                 _log.Error(true, "", e.Exception);
             }
-            catch 
+            catch
             {
             }
         }
@@ -47,7 +45,7 @@ namespace ServerSuperIO.Common
             {
                 _log.Error(true, "", (Exception)e.ExceptionObject);
             }
-            catch 
+            catch
             {
             }
         }

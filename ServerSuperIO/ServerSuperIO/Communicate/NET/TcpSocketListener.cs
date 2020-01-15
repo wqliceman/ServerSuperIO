@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using ServerSuperIO.Config;
+using System;
 using System.Net.Sockets;
-using System.Text;
-using ServerSuperIO.Common;
-using ServerSuperIO.Config;
 
 namespace ServerSuperIO.Communicate.NET
 {
@@ -15,7 +11,7 @@ namespace ServerSuperIO.Communicate.NET
         private Socket _ListenSocket;//侦听Socket
 
         private SocketAsyncEventArgs _AcceptSAE;
-        
+
         public TcpSocketListener(ListenerInfo info) : base(info)
         {
             _ListenBackLog = info.BackLog;
@@ -40,7 +36,6 @@ namespace ServerSuperIO.Communicate.NET
                     ProcessAccept(_AcceptSAE);
 
                 return true;
-
             }
             catch (Exception e)
             {

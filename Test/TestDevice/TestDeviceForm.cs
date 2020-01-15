@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TestDevice
@@ -168,7 +162,7 @@ namespace TestDevice
                             && _NetBuffer[1] == 0xaa
                             && _NetBuffer[read - 1] == 0x0d)
                         {
-                            if (read == 6 && _NetBuffer[3]==0x61)
+                            if (read == 6 && _NetBuffer[3] == 0x61)
                             {
                                 byte[] backData = GetBackData();
                                 client.Client.Send(backData);
@@ -210,7 +204,6 @@ namespace TestDevice
             this._IsNetConnect = false;
             this.btNet.Text = "连接网络";
             WriteLog("断开了服务器");
-            
         }
 
         private void btSendFile_Click(object sender, EventArgs e)
@@ -234,7 +227,7 @@ namespace TestDevice
                 backData[2] = byte.Parse(this.numericUpDown1.Value.ToString());//从机地址
                 backData[3] = 0x62;//命令
 
-                int count=(int)(new FileInfo(this.txtFilePath.Text)).Length;
+                int count = (int)(new FileInfo(this.txtFilePath.Text)).Length;
                 byte[] countBytes = BitConverter.GetBytes(count);
 
                 backData[4] = countBytes[0];
@@ -319,7 +312,7 @@ namespace TestDevice
 
         private void btSelect_Click(object sender, EventArgs e)
         {
-            OpenFileDialog ofd=new OpenFileDialog();
+            OpenFileDialog ofd = new OpenFileDialog();
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 this.txtFilePath.Text = ofd.FileName;

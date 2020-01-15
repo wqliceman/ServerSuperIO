@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace ServerSuperIO.Log
 {
@@ -96,7 +93,6 @@ namespace ServerSuperIO.Log
         {
             return String.Format("[{0}]>>{1}", DateTime.Now.ToString("yy-MM-dd HH:mm:ss"), log);
         }
-
 
         private void WriteLogContainer(string log)
         {

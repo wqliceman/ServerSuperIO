@@ -1,20 +1,17 @@
-﻿using System;
+﻿using ServerSuperIO.Common;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ServerSuperIO.Common;
 
 namespace ServerSuperIO.Protocol.Filter
 {
     public class FixedHeadAndLengthReceiveFliter : IReceiveFilter
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="headBytes"></param>
         /// <param name="length">包括SpliterBytes的长度</param>
-        public FixedHeadAndLengthReceiveFliter(byte[] headBytes,int length)
+        public FixedHeadAndLengthReceiveFliter(byte[] headBytes, int length)
         {
             HeadBytes = headBytes;
             Length = length;
@@ -28,10 +25,10 @@ namespace ServerSuperIO.Protocol.Filter
         /// <summary>
         /// 数据长度
         /// </summary>
-        private int Length { set;get; }
+        private int Length { set; get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="receiveBuffer"></param>
         /// <param name="offset"></param>
@@ -50,11 +47,11 @@ namespace ServerSuperIO.Protocol.Filter
                 {
                     if (receiveBuffer.Mark(offset, available, loopIndex, HeadBytes))
                     {
-                        byte[] data=new byte[Length];
-                        Buffer.BlockCopy(receiveBuffer, loopIndex, data,0,data.Length);
+                        byte[] data = new byte[Length];
+                        Buffer.BlockCopy(receiveBuffer, loopIndex, data, 0, data.Length);
                         listBytes.Add(data);
 
-                        lastByteOffset = loopIndex + Length - 1;//排除中间有干扰而插入的数据。           
+                        lastByteOffset = loopIndex + Length - 1;//排除中间有干扰而插入的数据。
                         loopIndex += Length;               //下标移到截取数据最后数据位的下一个下标
                     }
                     else

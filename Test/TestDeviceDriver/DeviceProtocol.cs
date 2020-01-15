@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using ServerSuperIO.Common;
+﻿using ServerSuperIO.Common;
 using ServerSuperIO.Communicate;
 using ServerSuperIO.Device;
-using ServerSuperIO.Protocol;
+using System;
 
 namespace TestDeviceDriver
 {
-    internal class DeviceProtocol:ProtocolDriver
+    internal class DeviceProtocol : ProtocolDriver
     {
         public override bool CheckData(byte[] data)
         {
@@ -57,7 +51,7 @@ namespace TestDeviceDriver
 
         public override string GetCode(byte[] data)
         {
-            byte[] head = new byte[] {0x55, 0xaa};
+            byte[] head = new byte[] { 0x55, 0xaa };
             int codeIndex = data.Mark(0, data.Length, head);
             if (codeIndex == -1)
             {
@@ -82,9 +76,9 @@ namespace TestDeviceDriver
                 {
                     if (data[3] == 0x62) //发送文件请求
                     {
-                        int length = BitConverter.ToInt32(new byte[] {data[4], data[5], data[6], data[7]}, 0);
+                        int length = BitConverter.ToInt32(new byte[] { data[4], data[5], data[6], data[7] }, 0);
 
-                        if (length <= 1024*1024) //1M
+                        if (length <= 1024 * 1024) //1M
                         {
                             int num = channel.Write(data);
                             if (num > 0)
@@ -109,7 +103,6 @@ namespace TestDeviceDriver
                 }
                 catch (Exception)
                 {
-
                     return 0;
                 }
             }

@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -47,7 +45,6 @@ namespace ServerSuperIO.Common
 
                 //byte[] inputByteArray = Convert.FromBase64String(decryptString);
 
-
                 int count = decryptString.Length / 2;
                 byte[] inputByteArray = new byte[count];
                 for (int i = 0; i < count; i++)
@@ -87,7 +84,6 @@ namespace ServerSuperIO.Common
                         format += "-";
                     sub = String.Empty;
                 }
-
             }
             return format;
         }
@@ -102,14 +98,14 @@ namespace ServerSuperIO.Common
             return tmp;
         }
 
-        public static string MD5(string str,Encoding encoding)
+        public static string MD5(string str, Encoding encoding)
         {
-           return MD5(encoding.GetBytes(str));
+            return MD5(encoding.GetBytes(str));
         }
 
         public static string MD5(string fileName)
         {
-            using (FileStream fs = new FileStream(fileName, FileMode.Open,FileAccess.Read,FileShare.Read))
+            using (FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
             {
                 byte[] data = new byte[fs.Length];
                 fs.Read(data, 0, data.Length);

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace ServerSuperIO.Server
 {
@@ -9,7 +6,6 @@ namespace ServerSuperIO.Server
     {
         public EqualException(string msg) : base(msg)
         {
-
         }
     }
 }

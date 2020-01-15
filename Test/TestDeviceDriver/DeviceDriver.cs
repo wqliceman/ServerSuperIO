@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using ServerSuperIO.Common;
+﻿using ServerSuperIO.Common;
 using ServerSuperIO.Communicate;
 using ServerSuperIO.Device;
 using ServerSuperIO.Device.Connector;
 using ServerSuperIO.Protocol;
 using ServerSuperIO.Protocol.Filter;
 using ServerSuperIO.Service.Connector;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace TestDeviceDriver
 {
@@ -21,12 +17,13 @@ namespace TestDeviceDriver
         private DevicePara _devicePara;
         private DeviceProtocol _protocol;
         private ContextMenuComponent _contextMenuComponent;
+
         public DeviceDriver() : base()
         {
             _devicePara = new DevicePara();
             _deviceDyn = new DeviceDyn();
             _protocol = new DeviceProtocol();
-            _contextMenuComponent=new ContextMenuComponent();
+            _contextMenuComponent = new ContextMenuComponent();
         }
 
         public override void Initialize(string devid)
@@ -40,7 +37,6 @@ namespace TestDeviceDriver
             //this.Protocol.InitDriver(this, new FixedHeadAndLengthReceiveFliter(new byte[] { 0x55, 0xaa },12));
 
             // this.Protocol.InitDriver(this, new FixedEndReceiveFliter(new byte[] { 0x0d }));
-
 
             //this.Protocol.InitDriver(this, null);
 
@@ -228,7 +224,6 @@ namespace TestDeviceDriver
             get { return "serversuperio"; }
         }
 
-
         public override object RunDeviceConnector(IFromDevice fromDevice, IDeviceToDevice toDevice)
         {
             Console.WriteLine(toDevice.Text);//输出其他设备传来的数据。
@@ -238,7 +233,7 @@ namespace TestDeviceDriver
         public override void DeviceConnectorCallback(object obj)
         {
             Console.WriteLine(obj.ToString());//输出返回结果
-            Console.WriteLine(this.DeviceParameter.DeviceName+ "说：奥黑也真够坑爹的！");
+            Console.WriteLine(this.DeviceParameter.DeviceName + "说：奥黑也真够坑爹的！");
             Console.WriteLine(">>>>模拟控制命令结束");
         }
 
@@ -249,8 +244,8 @@ namespace TestDeviceDriver
 
         public override object RunServiceConnector(IFromService fromService, IServiceToDevice toDevice)
         {
-            Console.WriteLine(this.DeviceParameter.DeviceName+",接收到云端指令:"+toDevice.Text);
-            return this.DeviceParameter.DeviceName+",执行完成";
+            Console.WriteLine(this.DeviceParameter.DeviceName + ",接收到云端指令:" + toDevice.Text);
+            return this.DeviceParameter.DeviceName + ",执行完成";
         }
     }
 }

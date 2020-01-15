@@ -1,20 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Sockets;
-using System.Text;
-using ServerSuperIO.DataCache;
-using ServerSuperIO.Protocol;
+﻿using ServerSuperIO.DataCache;
 using ServerSuperIO.Protocol.Filter;
+using System.Collections.Generic;
+using System.Net.Sockets;
 
 namespace ServerSuperIO.Communicate.NET
 {
     public class SocketAsyncEventArgsEx : SocketAsyncEventArgs, ISocketAsyncEventArgsEx
     {
         private IReceiveCache _ReceiveCache = null;
+
         public void Initialize()
         {
-            _ReceiveCache=new ReceiveCache(this.Buffer,this.Offset,this.Count);
+            _ReceiveCache = new ReceiveCache(this.Buffer, this.Offset, this.Count);
         }
 
         public int Capacity

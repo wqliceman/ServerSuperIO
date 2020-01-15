@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ServerSuperIO.Config;
+﻿using ServerSuperIO.Config;
 using ServerSuperIO.Device;
 using ServerSuperIO.Log;
+using System.Collections;
 
 namespace ServerSuperIO.Server
 {
-    public interface IServerManager:IEnumerable
+    public interface IServerManager : IEnumerable
     {
         IServer this[int index] { get; }
 

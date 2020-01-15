@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using ServerSuperIO.Base;
-using ServerSuperIO.Common;
+﻿using ServerSuperIO.Common;
 using ServerSuperIO.Communicate;
 using ServerSuperIO.Communicate.COM;
 using ServerSuperIO.Communicate.NET;
@@ -16,6 +9,9 @@ using ServerSuperIO.Log;
 using ServerSuperIO.Service;
 using ServerSuperIO.Service.Connector;
 using ServerSuperIO.Show;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace ServerSuperIO.Server
 {
@@ -187,7 +183,7 @@ namespace ServerSuperIO.Server
                         }
 
                         desc = String.Format("增加'{0}'串口设备，串口:{1} 波特率:{2}", dev.DeviceParameter.DeviceName, dev.DeviceParameter.COM.Port.ToString(), dev.DeviceParameter.COM.Baud.ToString());
-                        #endregion
+                        #endregion 串口
                     }
                     else if (dev.CommunicateType == CommunicateType.NET)
                     {
@@ -204,7 +200,7 @@ namespace ServerSuperIO.Server
                         }
 
                         desc = String.Format("增加'{0}'网络设备，IP地址:{1} 端口:{2}", dev.DeviceParameter.DeviceName, dev.DeviceParameter.NET.RemoteIP, dev.DeviceParameter.NET.RemotePort.ToString());
-                        #endregion
+                        #endregion 网络
                     }
                     else
                     {
@@ -394,7 +390,7 @@ namespace ServerSuperIO.Server
                 }
                 catch (Exception e)
                 {
-                    this.Logger.Error(true,"",e);
+                    this.Logger.Error(true, "", e);
                 }
             }
 
@@ -427,9 +423,9 @@ namespace ServerSuperIO.Server
                 }
                 catch (Exception ex)
                 {
-                    Logger.Error(true,"",ex);
+                    Logger.Error(true, "", ex);
                 }
-                
+
                 Logger.Info(true, String.Format("<{0}>显示视图显示成功", graphicsShow.ShowName));
                 return true;
             }
@@ -442,8 +438,8 @@ namespace ServerSuperIO.Server
 
         public bool RemoveGraphicsShow(string showKey)
         {
-            IGraphicsShow gShow=GraphicsShowManager.GetShow(showKey);
-            if (gShow!=null)
+            IGraphicsShow gShow = GraphicsShowManager.GetShow(showKey);
+            if (gShow != null)
             {
                 GraphicsShowManager.RemoveShow(showKey);
                 Logger.Info(true, String.Format("<{0}>显示视图关闭成功", gShow.ShowName));
@@ -556,7 +552,7 @@ namespace ServerSuperIO.Server
                 }
                 catch (Exception e)
                 {
-                    this.Logger.Error(true,"",e);
+                    this.Logger.Error(true, "", e);
                 }
             }
 
@@ -653,7 +649,6 @@ namespace ServerSuperIO.Server
             this.RemoveDevice(e.DeviceID);
         }
 
-
         private void UpdateContainer(object source, UpdateContainerArgs e)
         {
             if (e == null)
@@ -737,7 +732,7 @@ namespace ServerSuperIO.Server
         public event SocketClosedHandler SocketClosed;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="ip"></param>
         /// <param name="port"></param>
@@ -787,7 +782,7 @@ namespace ServerSuperIO.Server
 
                     ServiceManager.RemoveAllService();
 
-                    foreach (KeyValuePair<string,IGraphicsShow> show in GraphicsShowManager)
+                    foreach (KeyValuePair<string, IGraphicsShow> show in GraphicsShowManager)
                     {
                         try
                         {
@@ -808,7 +803,6 @@ namespace ServerSuperIO.Server
                         }
                     }
 
-                    
                     foreach (IRunDevice runDev in DeviceManager)
                     {
                         try
@@ -817,7 +811,7 @@ namespace ServerSuperIO.Server
                         }
                         catch (Exception ex)
                         {
-                            this.Logger.Error(true,"",ex);
+                            this.Logger.Error(true, "", ex);
                         }
                         try
                         {
@@ -828,7 +822,6 @@ namespace ServerSuperIO.Server
                             this.Logger.Error(true, "", ex);
                         }
                     }
-
 
                     if (_deviceContainer != null)
                     {
@@ -854,7 +847,6 @@ namespace ServerSuperIO.Server
                     || ServerConfig.ControlMode == ControlMode.Self
                     || ServerConfig.ControlMode == ControlMode.Parallel)
                 {
-
                     IRunDevice[] list = this.DeviceManager.GetDevices(comPara1, comType);
                     if (list != null && list.Length > 0)
                     {

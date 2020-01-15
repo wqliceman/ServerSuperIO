@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace TestLog
 {
     [Serializable]
-    public class Class1:ServerSuperIO.Device.DeviceParameter
+    public class Class1 : ServerSuperIO.Device.DeviceParameter
     {
         public Class1()
         {

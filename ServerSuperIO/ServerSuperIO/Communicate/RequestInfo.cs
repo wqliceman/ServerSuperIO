@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace ServerSuperIO.Communicate
 {
-    public class RequestInfo:IRequestInfo
+    public class RequestInfo : IRequestInfo
     {
         public RequestInfo()
         {
@@ -23,7 +21,7 @@ namespace ServerSuperIO.Communicate
             BigData = null;
         }
 
-        public RequestInfo(string key, byte[] data, IChannel channel,byte[] bigData):this(key,data,channel)
+        public RequestInfo(string key, byte[] data, IChannel channel, byte[] bigData) : this(key, data, channel)
         {
             BigData = bigData;
         }
@@ -36,7 +34,7 @@ namespace ServerSuperIO.Communicate
 
         public byte[] BigData { get; internal set; }
 
-        public static IList<IRequestInfo> ConvertBytesToRequestInfos(string key,IChannel channel,IList<byte[]> listBytes)
+        public static IList<IRequestInfo> ConvertBytesToRequestInfos(string key, IChannel channel, IList<byte[]> listBytes)
         {
             IList<IRequestInfo> listRequestInfos = new List<IRequestInfo>();
             if (listBytes != null)

@@ -1,24 +1,21 @@
-﻿using System;
-using System.CodeDom;
+﻿using ServerSuperIO.Base;
+using ServerSuperIO.Log;
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using ServerSuperIO.Base;
-using ServerSuperIO.Log;
-using ServerSuperIO.Service;
 
 namespace ServerSuperIO.Show
 {
-    public class GraphicsShowManager : IGraphicsShowManager<string ,IGraphicsShow>
+    public class GraphicsShowManager : IGraphicsShowManager<string, IGraphicsShow>
     {
         private Manager<string, IGraphicsShow> _manager;
-        public GraphicsShowManager(ILog log=null)
+
+        public GraphicsShowManager(ILog log = null)
         {
             Logger = log;
-            _manager=new Manager<string, IGraphicsShow>();
+            _manager = new Manager<string, IGraphicsShow>();
         }
 
         public IGraphicsShow this[int index]
@@ -95,9 +92,9 @@ namespace ServerSuperIO.Show
             return _manager.ContainsKey(showKey);
         }
 
-        public void BatchUpdateDevice(string deviceID,object obj)
+        public void BatchUpdateDevice(string deviceID, object obj)
         {
-            foreach (KeyValuePair<string ,IGraphicsShow> kv in _manager)
+            foreach (KeyValuePair<string, IGraphicsShow> kv in _manager)
             {
                 if (!kv.Value.IsDisposed)
                 {
@@ -109,7 +106,7 @@ namespace ServerSuperIO.Show
                     {
                         if (Logger != null)
                         {
-                            Logger.Error(true,"",ex);
+                            Logger.Error(true, "", ex);
                         }
                     }
                 }
@@ -124,7 +121,7 @@ namespace ServerSuperIO.Show
                 {
                     kv.Value.RemoveDevice(deviceID);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     if (Logger != null)
                     {
@@ -157,14 +154,16 @@ namespace ServerSuperIO.Show
             _manager.Clear();
         }
 
-        public int Count {
+        public int Count
+        {
             get { return this._manager.Count; }
         }
 
         public ILog Logger { get; private set; }
+
         public IEnumerator GetEnumerator()
         {
-           return this._manager.GetEnumerator();
+            return this._manager.GetEnumerator();
         }
     }
 }

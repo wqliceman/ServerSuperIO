@@ -1,10 +1,8 @@
-﻿using System;
+﻿using ServerSuperIO.Communicate.COM;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using System.Xml.Serialization;
-using ServerSuperIO.Communicate.COM;
 
 namespace ServerSuperIO.Config
 {
@@ -16,11 +14,10 @@ namespace ServerSuperIO.Config
             Caption = "";
             Ver = "";
             Copyright = "";
-            LinuxComList=new List<LinuxCom>();
+            LinuxComList = new List<LinuxCom>();
             DeviceAssemblyList = new List<DeviceAssembly>();
             ServerInstanceList = new List<ServerInstance>();
         }
-
 
         [DisplayName("1.Caption"),
         Description("软件名称")]
@@ -40,7 +37,7 @@ namespace ServerSuperIO.Config
         [DisplayName("4.DeviceAssemblyList"),
         Description("当前可用的设备驱动集合")]
         [XmlArray(ElementName = "DeviceAssemblyList")]
-        public List<DeviceAssembly> DeviceAssemblyList{ get; set; }
+        public List<DeviceAssembly> DeviceAssemblyList { get; set; }
 
         [DisplayName("5.ServerInstanceList"),
         Description("配置服务实例，包括服务配置信息和挂载的设备驱动")]

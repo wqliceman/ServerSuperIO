@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using ServerSuperIO.Device;
+﻿using ServerSuperIO.Device;
 using ServerSuperIO.Server;
+using System;
+using System.Threading;
 
 namespace ServerSuperIO.Communicate.COM
 {
@@ -16,7 +13,7 @@ namespace ServerSuperIO.Communicate.COM
 
         private bool _IsDisposed = false;//是否释放资源
 
-        private readonly object _SyncLock=new object();
+        private readonly object _SyncLock = new object();
 
         /// <summary>
         /// 构造函数
@@ -48,7 +45,7 @@ namespace ServerSuperIO.Communicate.COM
         /// </summary>
         public IComSession ComChannel
         {
-            get { return _Com;}
+            get { return _Com; }
             set { _Com = value; }
         }
 
@@ -131,7 +128,6 @@ namespace ServerSuperIO.Communicate.COM
             {
                 if (disposing)
                 {
-                    
                 }
 
                 lock (_SyncLock)
@@ -148,12 +144,11 @@ namespace ServerSuperIO.Communicate.COM
                             }
                             catch
                             {
-
                             }
                         }
                     }
                 }
-               
+
                 _IsDisposed = true;
             }
         }
@@ -224,7 +219,7 @@ namespace ServerSuperIO.Communicate.COM
                     {
                         lock (_Com.SyncLock)
                         {
-                           _Com.Open();
+                            _Com.Open();
                         }
                     }
 
@@ -250,7 +245,7 @@ namespace ServerSuperIO.Communicate.COM
             }
             catch (Exception ex)
             {
-                this.Server.Logger.Error(true,"串口控制器",ex);
+                this.Server.Logger.Error(true, "串口控制器", ex);
             }
         }
     }

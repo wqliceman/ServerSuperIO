@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using ServerSuperIO.Common;
+using System;
 using System.Threading;
-using ServerSuperIO.Common;
 
 namespace ServerSuperIO.Persistence
 {
-    public abstract class XmlPersistence:IXmlPersistence
+    public abstract class XmlPersistence : IXmlPersistence
     {
         private ReaderWriterLockSlim _rwLock = new ReaderWriterLockSlim();
         private readonly TimeSpan _lockTimeOut = TimeSpan.FromMilliseconds(100);

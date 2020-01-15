@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ServerSuperIO.Config;
+﻿using ServerSuperIO.Config;
 using ServerSuperIO.Device;
 using ServerSuperIO.Log;
 
 namespace ServerSuperIO.Server
 {
-    public sealed class Server:SocketServer
+    public sealed class Server : SocketServer
     {
-        internal Server(IServerConfig config, IDeviceContainer deviceContainer = null, ILogContainer logContainer = null) : base(config, deviceContainer,logContainer)
+        internal Server(IServerConfig config, IDeviceContainer deviceContainer = null, ILogContainer logContainer = null) : base(config, deviceContainer, logContainer)
         {
-
         }
 
         public override void Start()

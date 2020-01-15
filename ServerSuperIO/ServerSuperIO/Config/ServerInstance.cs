@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using System.Xml;
-using ServerSuperIO.Config;
 using System.Xml.Serialization;
 
 namespace ServerSuperIO.Config
@@ -12,7 +9,7 @@ namespace ServerSuperIO.Config
     [Serializable]
     public class ServerInstance
     {
-        public ServerInstance():this(new ServerConfig())
+        public ServerInstance() : this(new ServerConfig())
         {
         }
 
@@ -20,8 +17,8 @@ namespace ServerSuperIO.Config
         {
             ServerConfig = serverConfig;
             DeviceInstanceList = new List<DeviceInstance>();
-            ShowInstanceList=new List<ShowInstance>();
-            ServiceInstanceList=new List<ServiceInstance>();
+            ShowInstanceList = new List<ShowInstance>();
+            ServiceInstanceList = new List<ServiceInstance>();
         }
 
         [TypeConverter(typeof(ExpandableObjectConverter))]

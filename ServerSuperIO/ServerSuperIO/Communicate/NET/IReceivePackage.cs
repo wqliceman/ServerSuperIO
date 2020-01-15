@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace ServerSuperIO.Communicate.NET
 {
@@ -10,6 +7,6 @@ namespace ServerSuperIO.Communicate.NET
         string RemoteIP { get; set; }
         int RemotePort { get; set; }
         IList<IRequestInfo> RequestInfos { get; set; }
-       // string DeviceCode { get; set; }
+        // string DeviceCode { get; set; }
     }
 }

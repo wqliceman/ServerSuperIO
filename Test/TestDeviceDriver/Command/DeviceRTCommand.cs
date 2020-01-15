@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ServerSuperIO.Common;
+﻿using ServerSuperIO.Common;
 using ServerSuperIO.Device;
+using System;
 
 namespace TestDeviceDriver
 {
     /// <summary>
     /// 设备实时数据命令
     /// </summary>
-    internal class DeviceRTCommand:ProtocolCommand
+    internal class DeviceRTCommand : ProtocolCommand
     {
         public override string Name
         {
@@ -28,7 +24,7 @@ namespace TestDeviceDriver
             throw new NotImplementedException();
         }
 
-        public override dynamic Analysis<T1,T2>(byte[] data, T1 t1,T2 t2)
+        public override dynamic Analysis<T1, T2>(byte[] data, T1 t1, T2 t2)
         {
             throw new NotImplementedException();
         }
@@ -46,12 +42,10 @@ namespace TestDeviceDriver
             return data;
         }
 
-        public override byte[] Package<T1,T2>(string code, T1 t1,T2 t2)
+        public override byte[] Package<T1, T2>(string code, T1 t1, T2 t2)
         {
             throw new NotImplementedException();
         }
-
-      
 
         public override dynamic Analysis<T>(byte[] data, T t)
         {
@@ -71,7 +65,5 @@ namespace TestDeviceDriver
             dyn.Signal = BitConverter.ToSingle(signal, 0);
             return dyn;
         }
-
-       
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ServerSuperIO.Communicate;
+﻿using ServerSuperIO.Communicate;
 using ServerSuperIO.Communicate.COM;
 
 namespace ServerSuperIO.Device
@@ -35,7 +31,7 @@ namespace ServerSuperIO.Device
             {
                 item.AlertState = dev.GetAlertState();
             }
-            catch 
+            catch
             {
                 //
             }

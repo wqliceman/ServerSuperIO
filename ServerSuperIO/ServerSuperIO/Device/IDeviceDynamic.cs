@@ -8,17 +8,17 @@ namespace ServerSuperIO.Device
         /// <summary>
         /// 设备ID
         /// </summary>
-        string DeviceID { get;set;}
+        string DeviceID { get; set; }
 
         /// <summary>
         /// 当前备注说明
         /// </summary>
-        string Remark { get;set;}
+        string Remark { get; set; }
 
         /// <summary>
         /// 设备运行状态
         /// </summary>
-        RunState RunState { get;set;}
+        RunState RunState { get; set; }
 
         /// <summary>
         /// 设备的通讯状态

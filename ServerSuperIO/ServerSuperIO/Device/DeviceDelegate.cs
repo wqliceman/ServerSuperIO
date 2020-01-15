@@ -41,5 +41,4 @@ namespace ServerSuperIO.Device
     /// <param name="source"></param>
     /// <param name="e"></param>
     public delegate void UpdateContainerHandler(object source, UpdateContainerArgs e);
-
 }

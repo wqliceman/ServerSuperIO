@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace ServerSuperIO.Service.Connector
+﻿namespace ServerSuperIO.Service.Connector
 {
-    public class ServiceToDevice:IServiceToDevice
+    public class ServiceToDevice : IServiceToDevice
     {
         public ServiceToDevice(string deviceCode, string text, byte[] dataBytes, object obj)
         {

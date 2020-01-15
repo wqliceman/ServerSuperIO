@@ -1,24 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using ServerSuperIO.Communicate;
+﻿using ServerSuperIO.Communicate;
 using ServerSuperIO.Communicate.NET;
 using ServerSuperIO.Config;
 using ServerSuperIO.Server;
-using ServerSuperIO.Service;
-using ServerSuperIO.Show;
+using System;
 using TestDeviceDriver;
-using TestService;
-using TestShowForm;
 
 namespace TestSelfMain
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             //DeviceSelfDriver dev1 = new DeviceSelfDriver();
             //dev1.DeviceParameter.DeviceName = "串口设备";
@@ -59,16 +50,15 @@ namespace TestSelfMain
             });
 
             server.AddDeviceCompleted += server_AddDeviceCompleted;
-            server.DeleteDeviceCompleted+=server_DeleteDeviceCompleted;
+            server.DeleteDeviceCompleted += server_DeleteDeviceCompleted;
             server.Start();
 
             //server.AddDevice(dev1);
             server.AddDevice(dev2);
 
-            TestService.Service service=new TestService.Service();
+            TestService.Service service = new TestService.Service();
             service.IsAutoStart = true;
             server.AddService(service);
-
 
             while ("exit" == Console.ReadLine())
             {

@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ServerSuperIO.Log;
+﻿using ServerSuperIO.Log;
+using System;
 
 namespace TestLog
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            new LogFactory().GetLog("ddd").Debug(true,"ddd");
+            new LogFactory().GetLog("ddd").Debug(true, "ddd");
             Console.Read();
         }
     }

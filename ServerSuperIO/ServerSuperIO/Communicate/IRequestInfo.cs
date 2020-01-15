@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-
-namespace ServerSuperIO.Communicate
+﻿namespace ServerSuperIO.Communicate
 {
     public interface IRequestInfo
     {
@@ -21,7 +15,7 @@ namespace ServerSuperIO.Communicate
         /// <summary>
         /// IO通道
         /// </summary>
-        IChannel Channel { get;}
+        IChannel Channel { get; }
 
         /// <summary>
         /// 启动StartCheckPackageLength之后，二次接收的数据。

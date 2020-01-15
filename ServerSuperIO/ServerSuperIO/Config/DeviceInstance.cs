@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Xml;
-using ServerSuperIO.Communicate;
-using ServerSuperIO.Device;
-using System.Xml.Serialization;
+﻿using ServerSuperIO.Communicate;
 using ServerSuperIO.Communicate.NET;
+using System;
+using System.ComponentModel;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace ServerSuperIO.Config
 {
@@ -38,13 +34,11 @@ namespace ServerSuperIO.Config
         [XmlAttribute(AttributeName = "CommunicateType")]
         public CommunicateType CommunicateType { get; set; }
 
-
         [Category("1.挂载设备"),
          DisplayName("AssemblyID"),
          Description("标识设备驱动程序集的唯一ID，一般为Guid")]
         [XmlAttribute(AttributeName = "AssemblyID")]
         public string AssemblyID { get; set; }
-
 
         [Category("1.挂载设备"),
        DisplayName("DeviceName"),

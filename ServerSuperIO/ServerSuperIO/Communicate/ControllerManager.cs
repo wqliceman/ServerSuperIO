@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ServerSuperIO.Base;
-using ServerSuperIO.Communicate;
+﻿using ServerSuperIO.Base;
 using ServerSuperIO.Log;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ServerSuperIO.Communicate
 {
@@ -16,7 +13,7 @@ namespace ServerSuperIO.Communicate
         /// <summary>
         /// 构造函数
         /// </summary>
-        public ControllerManager(ILog log=null)
+        public ControllerManager(ILog log = null)
         {
             Logger = log;
             _Controllers = new Manager<string, IController>();
@@ -101,7 +98,7 @@ namespace ServerSuperIO.Communicate
                 {
                     if (Logger != null)
                     {
-                        Logger.Error(true,"",ex);
+                        Logger.Error(true, "", ex);
                     }
                 }
             });
@@ -126,7 +123,6 @@ namespace ServerSuperIO.Communicate
         {
             return _Controllers.Keys;
         }
-
 
         public int ControllerCount
         {

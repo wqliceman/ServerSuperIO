@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ServerSuperIO.Base;
+﻿using ServerSuperIO.Base;
 using ServerSuperIO.Communicate.COM;
 using ServerSuperIO.Communicate.NET;
 using ServerSuperIO.Log;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ServerSuperIO.Communicate
 {
@@ -18,10 +17,10 @@ namespace ServerSuperIO.Communicate
         /// <summary>
         /// 构造函数
         /// </summary>
-        public ChannelManager(ILog log=null)
+        public ChannelManager(ILog log = null)
         {
             Logger = log;
-            _SyncLock=new object();
+            _SyncLock = new object();
             _Channels = new Manager<string, IChannel>();
         }
 
@@ -45,7 +44,7 @@ namespace ServerSuperIO.Communicate
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
@@ -72,9 +71,9 @@ namespace ServerSuperIO.Communicate
         public IChannel GetChannel(string ioPara1, CommunicateType comType)
         {
             IChannel channel = null;
-            foreach (KeyValuePair<string,IChannel> c in _Channels)
+            foreach (KeyValuePair<string, IChannel> c in _Channels)
             {
-                if (c.Value.CommunicationType == comType && c.Value.Key==ioPara1)
+                if (c.Value.CommunicationType == comType && c.Value.Key == ioPara1)
                 {
                     channel = c.Value;
                     break;
@@ -83,7 +82,7 @@ namespace ServerSuperIO.Communicate
             return channel;
         }
 
-        public IChannel GetChannel(string ioPara1,int ioPara2, CommunicateType comType)
+        public IChannel GetChannel(string ioPara1, int ioPara2, CommunicateType comType)
         {
             IChannel channel = null;
             foreach (KeyValuePair<string, IChannel> c in _Channels)
@@ -96,12 +95,11 @@ namespace ServerSuperIO.Communicate
                         channel = c.Value;
                         break;
                     }
-                    
                 }
                 else if (c.Value.CommunicationType == comType)
                 {
                     IComSession comSession = (IComSession)c.Value;
-                    if (ComUtils.PortToString(comSession.Port)  == ioPara1 && comSession.Baud == ioPara2)
+                    if (ComUtils.PortToString(comSession.Port) == ioPara1 && comSession.Baud == ioPara2)
                     {
                         channel = c.Value;
                         break;
@@ -111,10 +109,9 @@ namespace ServerSuperIO.Communicate
             return channel;
         }
 
-
         public ICollection<IChannel> GetChannels(CommunicateType ioType)
         {
-           return GetValues().Where(v => v.CommunicationType == CommunicateType.NET).ToList();
+            return GetValues().Where(v => v.CommunicationType == CommunicateType.NET).ToList();
         }
 
         /// <summary>
@@ -165,10 +162,9 @@ namespace ServerSuperIO.Communicate
                     {
                         if (Logger != null)
                         {
-                            this.Logger.Error(true,"",ex);
+                            this.Logger.Error(true, "", ex);
                         }
                     }
-                  
                 }
                 return true;
             }
@@ -210,7 +206,6 @@ namespace ServerSuperIO.Communicate
 
             _Channels.Clear();
         }
-
 
         public int ChannelCount
         {

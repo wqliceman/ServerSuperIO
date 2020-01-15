@@ -1,13 +1,9 @@
-﻿using System;
+﻿using ServerSuperIO.Log;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ServerSuperIO.Log;
 
 namespace ServerSuperIO.Service
 {
-    public interface IServiceManager<TKey,TValue>:ILoggerProvider,IEnumerable where TValue : IService
+    public interface IServiceManager<TKey, TValue> : ILoggerProvider, IEnumerable where TValue : IService
     {
         TValue this[int index] { get; }
 

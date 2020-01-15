@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading;
-using System.Xml.Xsl;
-using ServerSuperIO.Common;
+﻿using ServerSuperIO.Common;
 using ServerSuperIO.Communicate;
 using ServerSuperIO.Communicate.NET;
 using ServerSuperIO.Config;
 using ServerSuperIO.Device;
 using ServerSuperIO.Log;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.Sockets;
+using System.Threading;
 
 namespace ServerSuperIO.Server
 {
@@ -27,7 +25,6 @@ namespace ServerSuperIO.Server
         internal SocketServer(IServerConfig config, IDeviceContainer deviceContainer = null, ILogContainer logContainer = null)
             : base(config, deviceContainer, logContainer)
         {
-
         }
 
         public override void Start()
@@ -120,7 +117,7 @@ namespace ServerSuperIO.Server
         {
             if (this.ServerConfig.ClearSocketSession)
             {
-                int interval = ServerConfig.ClearSocketSessionInterval*1000;
+                int interval = ServerConfig.ClearSocketSessionInterval * 1000;
                 _ClearSocketSessionTimer = new System.Threading.Timer(ClearSocketSession);
                 _ClearSocketSessionTimer.Change(interval, interval);
             }
@@ -134,23 +131,23 @@ namespace ServerSuperIO.Server
                 {
                     ICollection<IChannel> socketChannels = this.ChannelManager.GetChannels(CommunicateType.NET);
 
-                    if (socketChannels == null || socketChannels.Count<=0)
+                    if (socketChannels == null || socketChannels.Count <= 0)
                         return;
 
                     DateTime now = DateTime.Now;
-  
-                    IEnumerable<IChannel> timeoutSessions = socketChannels.Where(c => (now-((ISocketSession)c).LastActiveTime).Seconds>ServerConfig.ClearSocketSessionTimeOut);
+
+                    IEnumerable<IChannel> timeoutSessions = socketChannels.Where(c => (now - ((ISocketSession)c).LastActiveTime).Seconds > ServerConfig.ClearSocketSessionTimeOut);
 
                     System.Threading.Tasks.Parallel.ForEach(timeoutSessions, c =>
                     {
-                       ISocketSession s = ((ISocketSession) c);
-                       Logger.Info(true,String.Format("网络连接超时:{0}, 开始时间: {1}, 最后激活时间:{2}!", now.Subtract(s.LastActiveTime).TotalSeconds, s.StartTime, s.LastActiveTime));
+                        ISocketSession s = ((ISocketSession)c);
+                        Logger.Info(true, String.Format("网络连接超时:{0}, 开始时间: {1}, 最后激活时间:{2}!", now.Subtract(s.LastActiveTime).TotalSeconds, s.StartTime, s.LastActiveTime));
                         RemoveTcpSocketSession(s);
                     });
                 }
                 catch (Exception ex)
                 {
-                    this.Logger.Error(true,ex.Message);
+                    this.Logger.Error(true, ex.Message);
                 }
                 finally
                 {
@@ -215,7 +212,7 @@ namespace ServerSuperIO.Server
                         IChannel socketSession = ChannelManager.GetChannel(ipInfo[0], CommunicateType.NET);
                         if (socketSession != null)
                         {
-                            RemoveTcpSocketSession((ISocketSession) socketSession);
+                            RemoveTcpSocketSession((ISocketSession)socketSession);
                         }
                     }
                 }
@@ -225,13 +222,13 @@ namespace ServerSuperIO.Server
             else if (this.ServerConfig.SocketMode == SocketMode.Udp)
             {
                 object[] arr = (object[])state;
-                ISocketSession socketSession=new UdpSocketSession(client,(IPEndPoint)arr[1],null);
+                ISocketSession socketSession = new UdpSocketSession(client, (IPEndPoint)arr[1], null);
                 Logger.Info(false, String.Format("远程UDP接收到数据>>{0}:{1}", socketSession.RemoteIP, socketSession.RemotePort));
 
-                IList<IRequestInfo> ris=new List<IRequestInfo>();
-                ris.Add(new RequestInfo(socketSession.Key, (byte[])arr[0],socketSession));
-                IReceivePackage rp=new ReceivePackage(socketSession.RemoteIP,socketSession.RemotePort, ris);
-                socketChannel_SocketReceiveData(socketSession, socketSession,rp);
+                IList<IRequestInfo> ris = new List<IRequestInfo>();
+                ris.Add(new RequestInfo(socketSession.Key, (byte[])arr[0], socketSession));
+                IReceivePackage rp = new ReceivePackage(socketSession.RemoteIP, socketSession.RemotePort, ris);
+                socketChannel_SocketReceiveData(socketSession, socketSession, rp);
             }
         }
 
@@ -268,7 +265,7 @@ namespace ServerSuperIO.Server
                     return;
                 }
 
-                ISocketSession socketSession = new TcpSocketSession(client,(IPEndPoint)client.RemoteEndPoint, socketProxy);
+                ISocketSession socketSession = new TcpSocketSession(client, (IPEndPoint)client.RemoteEndPoint, socketProxy);
                 socketSession.Setup(this);
                 socketSession.Initialize();
 

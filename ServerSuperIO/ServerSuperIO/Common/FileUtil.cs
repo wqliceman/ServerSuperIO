@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Security.Cryptography;
-using System.Text;
 
 namespace ServerSuperIO.Common
 {
@@ -16,7 +13,7 @@ namespace ServerSuperIO.Common
         /// <param name="content"></param>
         public static void WriteAppend(string filePath, string content)
         {
-            WriteAppend(filePath,new string[]{content});
+            WriteAppend(filePath, new string[] { content });
         }
 
         public static void WriteAppend(string filePath, string[] contents)

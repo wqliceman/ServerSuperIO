@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ServerSuperIO.Communicate;
-using ServerSuperIO.Server;
+﻿using ServerSuperIO.Server;
+using System;
 
 namespace ServerSuperIO.Communicate
 {
-    public interface IController : IServerProvider,IDisposable
+    public interface IController : IServerProvider, IDisposable
     {
         /// <summary>
         /// 当然是否工作

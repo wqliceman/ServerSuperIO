@@ -1,18 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
-using ServerSuperIO.DataCache;
 using ServerSuperIO.Communicate;
 using ServerSuperIO.Device.Connector;
-using ServerSuperIO.Log;
 using ServerSuperIO.Protocol;
 using ServerSuperIO.Protocol.Filter;
 using ServerSuperIO.Server;
 using ServerSuperIO.Service.Connector;
+using System.Collections.Generic;
 
 namespace ServerSuperIO.Device
 {
-    public interface IRunDevice: IServerProvider,IVirtualDevice,IDeviceConnector, IServiceConnectorDevice
+    public interface IRunDevice : IServerProvider, IVirtualDevice, IDeviceConnector, IServiceConnectorDevice
     {
         #region 函数接口
 
@@ -130,7 +126,6 @@ namespace ServerSuperIO.Device
         /// <param name="channelState"></param>
         void ChannelStateChanged(ChannelState channelState);
 
-
         /// <summary>
         /// 当软件关闭的时间，响应设备退出操作
         /// </summary>
@@ -181,9 +176,11 @@ namespace ServerSuperIO.Device
         ///// <param name="data"></param>
         ///// <param name="desc"></param>
         //void ShowMonitorData(byte[] data, string desc);
-        #endregion
+
+        #endregion 函数接口
 
         #region 属性接口
+
         /// <summary>
         /// 是否监测Channel数据
         /// </summary>
@@ -222,7 +219,7 @@ namespace ServerSuperIO.Device
         /// <summary>
         /// 是否开启时钟，标识是否调用OnRunTimer接口函数。
         /// </summary>
-        bool IsRunTimer { set; get;}
+        bool IsRunTimer { set; get; }
 
         /// <summary>
         /// 时钟间隔值，标识定时调用DeviceTimer接口函数的周期
@@ -232,33 +229,34 @@ namespace ServerSuperIO.Device
         /// <summary>
         /// 设备的类型
         /// </summary>
-        DeviceType DeviceType { get;  }
+        DeviceType DeviceType { get; }
 
         /// <summary>
         /// 设备编号
         /// </summary>
-        string ModelNumber { get;}
+        string ModelNumber { get; }
 
         /// <summary>
         /// 设备运行权限级别，如果运行级别高的话，则优先发送和接收数据。
         /// </summary>
-        DevicePriority DevicePriority { get;set;}
+        DevicePriority DevicePriority { get; set; }
 
         /// <summary>
         /// 设备的通讯类型
         /// </summary>
-        CommunicateType CommunicateType { get;set;}
+        CommunicateType CommunicateType { get; set; }
 
         /// <summary>
         /// 标识是否运行设备，如果为false，调用运行设备接口时直接返回
         /// </summary>
-        bool IsRunDevice{ get;set;}
+        bool IsRunDevice { get; set; }
 
         /// <summary>
         /// 是否释放资源
         /// </summary>
         bool IsDisposed { get; }
-        #endregion
+
+        #endregion 属性接口
 
         #region 事件接口
 
@@ -297,6 +295,7 @@ namespace ServerSuperIO.Device
         /// 设备数据对象改变事件
         /// </summary>
         event DeviceObjectChangedHandler DeviceObjectChanged;
+
         /// <summary>
         /// 数据驱动事件，对DeviceObjectChangedHandler事件的封装
         /// </summary>
@@ -306,6 +305,7 @@ namespace ServerSuperIO.Device
         /// 删除设备事件
         /// </summary>
         event DeleteDeviceHandler DeleteDevice;
+
         /// <summary>
         /// 删除设备事件，对DeleteDeviceHandler事件的封装
         /// </summary>
@@ -315,10 +315,12 @@ namespace ServerSuperIO.Device
         /// 更新设备运行器事件
         /// </summary>
         event UpdateContainerHandler UpdateContainer;
+
         /// <summary>
         /// 更新设备运行事件，对UpdateContainerHandler事件的封装
         /// </summary>
         void OnUpdateContainer(object obj);
-        #endregion
+
+        #endregion 事件接口
     }
 }

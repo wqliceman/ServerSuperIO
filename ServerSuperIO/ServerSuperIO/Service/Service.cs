@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ServerSuperIO.Service.Connector;
+﻿using ServerSuperIO.Service.Connector;
+using System;
 
 namespace ServerSuperIO.Service
 {
-    public abstract class Service:IService
+    public abstract class Service : IService
     {
         protected Service()
         {
-            
         }
 
-        public abstract string ServiceKey { get;}
+        public abstract string ServiceKey { get; }
 
         public abstract string ServiceName { get; }
 
@@ -35,7 +31,7 @@ namespace ServerSuperIO.Service
         {
             if (ServiceLog != null)
             {
-                ServiceLog(this.ServiceName+","+log);
+                ServiceLog(this.ServiceName + "," + log);
             }
         }
 
@@ -53,11 +49,12 @@ namespace ServerSuperIO.Service
         public abstract void ServiceConnectorCallbackError(Exception ex);
 
         public event ServiceConnectorHandler ServiceConnector;
+
         public void OnServiceConnector(IFromService fromService, IServiceToDevice toDevice)
         {
             if (ServiceConnector == null) return;
 
-            ServiceConnector(this,new ServiceConnectorArgs(fromService,toDevice));
+            ServiceConnector(this, new ServiceConnectorArgs(fromService, toDevice));
         }
     }
 }

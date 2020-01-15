@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ServerSuperIO.Base;
-using ServerSuperIO.Communicate;
+﻿using ServerSuperIO.Communicate;
 using ServerSuperIO.Communicate.NET;
 using ServerSuperIO.Log;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace ServerSuperIO.Device
 {
-    public interface IDeviceManager<TKey, TValue>:ILoggerProvider,IEnumerable where TValue : IRunDevice
+    public interface IDeviceManager<TKey, TValue> : ILoggerProvider, IEnumerable where TValue : IRunDevice
     {
-
         TValue this[int index] { get; }
 
         TValue this[string key] { get; }
@@ -90,7 +85,6 @@ namespace ServerSuperIO.Device
         /// <returns></returns>
         TValue[] GetDevices(string remoteIP, WorkMode workMode);
 
-
         /// <summary>
         /// 获得指定工作模式的网络设备
         /// </summary>
@@ -113,7 +107,7 @@ namespace ServerSuperIO.Device
         TValue[] GetDevices(Device.DeviceType devType);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>

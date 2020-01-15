@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ServerSuperIO.Show;
+﻿using ServerSuperIO.Show;
+using System;
 
 namespace ServerSuperIO.Device
 {
-    public interface IDeviceContainer:IDisposable
+    public interface IDeviceContainer : IDisposable
     {
         /// <summary>
         /// 查找设备
@@ -16,7 +13,7 @@ namespace ServerSuperIO.Device
         object FindDevice(string devid);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="devid"></param>
         /// <param name="item"></param>

@@ -1,22 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ServerSuperIO.Common;
-using ServerSuperIO.Communicate.COM;
+﻿using ServerSuperIO.Communicate.COM;
 using ServerSuperIO.Communicate.NET;
 using ServerSuperIO.Persistence;
+using System;
 
 namespace ServerSuperIO.Device
 {
     [Serializable]
-    public abstract class DeviceParameter:XmlPersistence,IDeviceParameter
+    public abstract class DeviceParameter : XmlPersistence, IDeviceParameter
     {
         protected DeviceParameter()
         {
             DeviceID = String.Empty;
             DeviceAddr = -1;
-            DeviceName=String.Empty;
+            DeviceName = String.Empty;
             IsSaveOriginBytes = false;
             IsAlert = false;
             IsAlertSound = false;

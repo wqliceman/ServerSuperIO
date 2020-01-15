@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-using ServerSuperIO.Protocol;
+﻿using ServerSuperIO.Protocol.Filter;
 using ServerSuperIO.Server;
-using ServerSuperIO.Protocol.Filter;
+using System;
+using System.Collections.Generic;
 
 namespace ServerSuperIO.Communicate
 {
-    public interface IChannel : IServerProvider,IDisposable
+    public interface IChannel : IServerProvider, IDisposable
     {
         void Initialize();
 

@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ServerSuperIO.Protocol;
+﻿using ServerSuperIO.Protocol;
 
 namespace ServerSuperIO.Device
 {
     public abstract class ProtocolCommand : IProtocolCommand
     {
         protected ProtocolCommand()
-        {}
+        { }
+
         /// <summary>
         /// 命令名称，唯一
         /// </summary>
         public abstract string Name { get; }
-
 
         /// <summary>
         /// 执行命令
@@ -24,7 +20,7 @@ namespace ServerSuperIO.Device
         public abstract void ExcuteCommand<T>(T t);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <typeparam name="T1"></typeparam>
         /// <typeparam name="T2"></typeparam>
@@ -33,7 +29,7 @@ namespace ServerSuperIO.Device
         public abstract void ExcuteCommand<T1, T2>(T1 t1, T2 t2);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="data"></param>
@@ -43,7 +39,7 @@ namespace ServerSuperIO.Device
         public abstract dynamic Analysis<T>(byte[] data, T t);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <typeparam name="T1"></typeparam>
         /// <typeparam name="T2"></typeparam>
@@ -54,7 +50,7 @@ namespace ServerSuperIO.Device
         public abstract dynamic Analysis<T1, T2>(byte[] data, T1 t1, T2 t2);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="code"></param>
@@ -63,7 +59,7 @@ namespace ServerSuperIO.Device
         public abstract byte[] Package<T>(string code, T t);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <typeparam name="T1"></typeparam>
         /// <typeparam name="T2"></typeparam>
@@ -72,7 +68,6 @@ namespace ServerSuperIO.Device
         /// <param name="t2"></param>
         /// <returns></returns>
         public abstract byte[] Package<T1, T2>(string code, T1 t1, T2 t2);
-
 
         /// <summary>
         /// 安装协议驱动

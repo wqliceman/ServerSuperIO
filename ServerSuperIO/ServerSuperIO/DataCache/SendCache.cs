@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using ServerSuperIO.DataCache;
 
 namespace ServerSuperIO.DataCache
 {
@@ -14,21 +13,26 @@ namespace ServerSuperIO.DataCache
     public class SendCache : ServerSuperIO.DataCache.ISendCache
     {
         #region Fields
+
         /// <summary>
         /// 内部的 Dictionary 容器
         /// </summary>
         private List<ISendCommand> _CmdCache = new List<ISendCommand>();
+
         /// <summary>
         /// 用于并发同步访问的 RW 锁对象
         /// </summary>
         private ReaderWriterLock _rwLock = new ReaderWriterLock();
+
         /// <summary>
-        /// 一个 TimeSpan，用于指定超时时间。 
+        /// 一个 TimeSpan，用于指定超时时间。
         /// </summary>
         private readonly TimeSpan _lockTimeOut = TimeSpan.FromMilliseconds(100);
-        #endregion
+
+        #endregion Fields
 
         #region Methods
+
         /// <summary>
         /// 将指定的键和值添加到字典中。
         /// Exceptions：
@@ -46,7 +50,7 @@ namespace ServerSuperIO.DataCache
             _rwLock.AcquireWriterLock(_lockTimeOut);
             try
             {
-                SendCommand cmd = new SendCommand(cmdkey, cmdbytes,priority);
+                SendCommand cmd = new SendCommand(cmdkey, cmdbytes, priority);
                 this._CmdCache.Add(cmd);
             }
             finally { _rwLock.ReleaseWriterLock(); }
@@ -79,7 +83,7 @@ namespace ServerSuperIO.DataCache
             try
             {
                 ISendCommand cmd = this._CmdCache.FirstOrDefault(c => c.Key == cmdkey);
-                if(cmd!=null)
+                if (cmd != null)
                 {
                     this._CmdCache.Remove(cmd);
                 }
@@ -112,7 +116,7 @@ namespace ServerSuperIO.DataCache
         {
             if (this._CmdCache.Count <= 0)
             {
-                return new byte[] {};
+                return new byte[] { };
             }
 
             _rwLock.AcquireReaderLock(_lockTimeOut);
@@ -124,7 +128,7 @@ namespace ServerSuperIO.DataCache
                     data = this._CmdCache[0].Bytes;
                     this._CmdCache.RemoveAt(0);
                 }
-                else if(priority==Priority.High)
+                else if (priority == Priority.High)
                 {
                     ISendCommand cmd = this._CmdCache.FirstOrDefault(c => c.Priority == Priority.High);
                     if (cmd != null)
@@ -151,7 +155,7 @@ namespace ServerSuperIO.DataCache
             _rwLock.AcquireReaderLock(_lockTimeOut);
             try
             {
-                ISendCommand cmd=this._CmdCache.FirstOrDefault(c => c.Key == cmdkey);
+                ISendCommand cmd = this._CmdCache.FirstOrDefault(c => c.Key == cmdkey);
                 if (cmd == null)
                 {
                     return new byte[] { };
@@ -182,6 +186,7 @@ namespace ServerSuperIO.DataCache
         {
             get { return _CmdCache.Count; }
         }
-        #endregion
+
+        #endregion Methods
     }
 }

@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ServerSuperIO.Common;
+﻿using ServerSuperIO.Common;
 using ServerSuperIO.Config;
+using System;
+using System.Linq;
 
 namespace ServerSuperIO.Communicate.COM
 {
@@ -15,9 +13,9 @@ namespace ServerSuperIO.Communicate.COM
 
         public static string PortToString(int port)
         {
-            string prefix=String.Empty;
+            string prefix = String.Empty;
             OperatingSystemType plat = Common.OperatingSystem.GetOperatingSystemType();
-            if (plat==OperatingSystemType.Windows)
+            if (plat == OperatingSystemType.Windows)
             {
                 prefix = WinComPrefix;
             }
@@ -37,7 +35,7 @@ namespace ServerSuperIO.Communicate.COM
                     }
                 }
             }
-            return String.Format("{0}{1}",prefix,port.ToString());
+            return String.Format("{0}{1}", prefix, port.ToString());
         }
 
         public static int PortToInt(string portString)

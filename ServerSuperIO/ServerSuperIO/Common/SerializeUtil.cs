@@ -1,15 +1,14 @@
-﻿using System;
-using System.Xml;
-using System.IO;
+﻿using System.IO;
 using System.Runtime.Serialization;
-using System.Xml.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization.Formatters.Soap;
 using System.Web.Script.Serialization;
+using System.Xml.Serialization;
 
 namespace ServerSuperIO.Common
 {
     #region 序列化
+
     public static class SerializeUtil
     {
         /// <summary>
@@ -41,7 +40,7 @@ namespace ServerSuperIO.Common
                 using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read))
                 {
                     IFormatter formatter = new BinaryFormatter();
-                    t = (T) formatter.Deserialize(fs);
+                    t = (T)formatter.Deserialize(fs);
                 }
                 return t;
             }
@@ -65,7 +64,6 @@ namespace ServerSuperIO.Common
                 formatter.Serialize(fs, t);
             }
         }
-
 
         /// <summary>
         /// 反序列化SOAP
@@ -106,7 +104,6 @@ namespace ServerSuperIO.Common
             }
         }
 
-
         /// <summary>
         /// 反序列化XML
         /// </summary>
@@ -131,10 +128,10 @@ namespace ServerSuperIO.Common
             }
         }
 
-        public static void JsonSerialize<T>(string filePath, T t) where T : class 
+        public static void JsonSerialize<T>(string filePath, T t) where T : class
         {
-            JavaScriptSerializer jss=new JavaScriptSerializer();
-            string json=jss.Serialize(t);
+            JavaScriptSerializer jss = new JavaScriptSerializer();
+            string json = jss.Serialize(t);
             System.IO.File.WriteAllText(filePath, json);
         }
 
@@ -152,6 +149,6 @@ namespace ServerSuperIO.Common
             }
         }
     }
-    #endregion
-}
 
+    #endregion 序列化
+}

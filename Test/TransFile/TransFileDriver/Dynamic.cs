@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ServerSuperIO.Device;
+﻿using ServerSuperIO.Device;
+using System;
 
 namespace TransFileDriver
 {
-    public class Dynamic:DeviceDynamic
+    public class Dynamic : DeviceDynamic
     {
         public override string GetAlertState()
         {

@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
-using ServerSuperIO.Common;
-using ServerSuperIO.Protocol;
+﻿using ServerSuperIO.Common;
 using ServerSuperIO.Protocol.Filter;
+using System;
+using System.Collections.Generic;
 
 namespace ServerSuperIO.DataCache
 {
@@ -67,7 +62,7 @@ namespace ServerSuperIO.DataCache
         /// <summary>
         /// 下标偏移量
         /// </summary>
-        public int InitOffset { private set; get;  }
+        public int InitOffset { private set; get; }
 
         /// <summary>
         /// 当前下标
@@ -82,7 +77,7 @@ namespace ServerSuperIO.DataCache
         {
             lock (_SyncLock)
             {
-                MoveLeft(CurrentOffset- InitOffset);
+                MoveLeft(CurrentOffset - InitOffset);
 
                 int remainLength = Capacity - (DataLength + InitOffset);
                 if (data.Length > remainLength)
@@ -106,7 +101,7 @@ namespace ServerSuperIO.DataCache
         {
             if (DataLength <= 0)
             {
-                return new byte[] {};
+                return new byte[] { };
             }
 
             lock (_SyncLock)
@@ -140,13 +135,13 @@ namespace ServerSuperIO.DataCache
             {
                 int lastByteOffset = InitOffset;
                 IList<byte[]> listBytes = filter.Filter(ReceiveBuffer, InitOffset, DataLength, ref lastByteOffset);
-                if (listBytes != null 
+                if (listBytes != null
                     && listBytes.Count > 0
-                    && lastByteOffset>InitOffset)
+                    && lastByteOffset > InitOffset)
                 {
                     CurrentOffset = lastByteOffset + 1;
 
-                    int gets = CurrentOffset - InitOffset ;
+                    int gets = CurrentOffset - InitOffset;
                     DataLength -= gets;
 
                     MoveLeft(gets);
@@ -163,7 +158,7 @@ namespace ServerSuperIO.DataCache
 
         private void MoveLeft(int gets)
         {
-            if (CurrentOffset > InitOffset && CurrentOffset < (InitOffset+Capacity))
+            if (CurrentOffset > InitOffset && CurrentOffset < (InitOffset + Capacity))
             {
                 if (DataLength <= 0)
                 {

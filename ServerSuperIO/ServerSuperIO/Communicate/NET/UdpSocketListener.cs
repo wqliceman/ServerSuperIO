@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using ServerSuperIO.Config;
+using System;
 using System.Net;
 using System.Net.Sockets;
-using System.Text;
-using ServerSuperIO.Config;
 
 namespace ServerSuperIO.Communicate.NET
 {
@@ -17,7 +14,6 @@ namespace ServerSuperIO.Communicate.NET
         public UdpSocketListener(ListenerInfo info)
             : base(info)
         {
-
         }
 
         public override bool Start(IServerConfig config)
@@ -48,7 +44,7 @@ namespace ServerSuperIO.Communicate.NET
             }
         }
 
-        void eventArgs_Completed(object sender, SocketAsyncEventArgs e)
+        private void eventArgs_Completed(object sender, SocketAsyncEventArgs e)
         {
             if (e.SocketError != SocketError.Success)
             {
@@ -65,10 +61,10 @@ namespace ServerSuperIO.Communicate.NET
             {
                 try
                 {
-                    byte[] revData=new byte[e.BytesTransferred];
-                    Buffer.BlockCopy(e.Buffer,e.Offset,revData,0,revData.Length);
+                    byte[] revData = new byte[e.BytesTransferred];
+                    Buffer.BlockCopy(e.Buffer, e.Offset, revData, 0, revData.Length);
 
-                    OnNewClientAcceptedAsync(_ListenSocket, new object[]{revData,e.RemoteEndPoint});
+                    OnNewClientAcceptedAsync(_ListenSocket, new object[] { revData, e.RemoteEndPoint });
                 }
                 catch (Exception exc)
                 {

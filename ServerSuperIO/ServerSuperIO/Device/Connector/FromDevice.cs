@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace ServerSuperIO.Device.Connector
+﻿namespace ServerSuperIO.Device.Connector
 {
-    public class FromDevice:IFromDevice
+    public class FromDevice : IFromDevice
     {
         public FromDevice(string deviceID, string deviceCode, int deviceAddr, string deviceName)
         {
